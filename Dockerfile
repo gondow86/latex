@@ -4,6 +4,8 @@ RUN apt-get update \
   && apt-get install -y \
     libfontconfig1 \
   && rm -rf /var/lib/apt/lists/*
+
+RUN tlmgr update --self
 RUN tlmgr install amsmath
 RUN tlmgr install amsfonts
 RUN tlmgr install mathtools
