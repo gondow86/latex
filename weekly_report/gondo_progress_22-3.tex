@@ -1,0 +1,40 @@
+\documentclass[dvipdfmx]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{mathtools}
+\usepackage{here}
+\usepackage{url}
+\begin{document}
+\title{週間進捗報告}
+\author{権藤陸}
+\date{2022年5月11日}
+\maketitle
+\section{進捗}
+"Deep generative model with domain adversarial training for predicting arterial blood pressure waveform from photoplethysmogram signal" を導入部分まで読んだ．
+\section{本研究の概要}
+生の光電容積脈波（PPG）信号のみを用いて，動脈血圧（ABP）波形を予測・生成する生成モデルの開発を行った．モデルは，畳込みをベースとした，ディープオートエンコーダ（DAE）である．提案した手法は，他の主流な回帰型の深層学習手法に匹敵するが，複雑な特徴量を必要としない．
+\section{導入}
+長期的な血圧モニタリングは，個人の健康状態の変化を動的に反映し，潜在的な病気に対する警告や予防に大きな意味を持つ．
+現在の血圧測定のアプローチとして主流なものは，腕に巻くカフを用いるものであるが，使える場面が限定されてしまう．
+本研究では光電容積脈波センサ（PPG）を用いて，非侵襲的でカフを必要としないアプローチを提案する．
+
+PPGセンサは安価で，複数の電極を取り付ける必要のあるECGと比べて利便性が高いという特徴がある．
+関連研究によれば，PPG信号と動脈血圧（PPG）信号は，幾何学的に類似性を持つ\cite{one}．これは，血管が収縮すればより高い圧力がかかり，弛緩すればより低い圧力になることと，PPG信号の交流部が動脈血の脈拍数と関連していることに由来する．
+
+PPG信号，ECG信号，あるいはその両方を用いて血圧を測定するアプローチは幅広く存在する．本研究では，主に３点の貢献点が挙げられる．
+
+１．現在主流となっている回帰に基づくBP値の直接予測とは異なり、信号変換の観点からABP波形予測を研究しており、BP値だけでなくABP波形も報告されている点
+
+２．今回開発したDAEの性能は他の深層学習手法に劣らないにも拘らず，パラメータ数は他の手法よりもはるかに少ないという点
+
+３．データセットの個人差が大きいことを考慮し，マルチドメイン敵対学習（Multi-domain adversarial training）をDAEに組み込み（$=$RDAE），より一般的なモデルを学習させることに加えて，モデルの微調整を行うことで予測精度を大幅に向上させた点
+
+\section{計画}
+引き続き論文を読み進める．特に，PPGの動作原理，RDAE(Regularized deep autoencorder)についての理解を深める．
+\begin{thebibliography}{}
+\bibitem{one} Keke Qin, Wu Huang, Tao Zhang, Deep generative model with domain adversarial training for predicting arterial blood pressure waveform from photoplethysmogram signal, Biomedical Signal Processing and Control 70 (2021) 102972, \url{www.elsevier.com/locate/bspc}
+\item G. Martínez, N. Howard, D. Abbott, K. Lim, R. Ward, M. Elgendi, Can photoplethysmography
+replace arterial blood pressure in the assessment of blood
+pressure? J. Clin. Med. 7 (2018) 316, \url{http://dx.doi.org/10.3390/jcm7100316}
+\end{thebibliography}
+\end{document}
