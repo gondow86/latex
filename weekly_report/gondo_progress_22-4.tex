@@ -10,7 +10,7 @@
 \maketitle
 \section{進捗}
 いただいた論文を読み進めた．
-\section{PPGセンサの原理}
+\section{PPGセンサの原理 \cite{ppg}}
 PPGセンサは．血液によって吸収・反射される赤外線の量を測定する．受光される光の波長は約940nmである．センサには透過型・反射型の2種類が存在する．透過型のPPGセンサでは，LEDの光は皮膚の色素や骨，動脈血や静脈血等の吸収性物質を透過し，フィルタやコンバータ通し，光検出器で光エネルギーを計測する．一方，反射型のセンサは，LED光を皮膚で反射させ，それを検出器で受光し，フィルタやコンバータで同様に定量化する．
 よって，PPG波形は主に血液量の変化に起因し，光エネルギーの減衰変化を表す．
 より具体的には，PPGは血液中のグルコースによって生じる光散乱の特性に基づいている．グルコースが増加すると，その存在によって屈折率が低下するため，組織を透過する光ビームの位置ずれが減少する．その結果，吸収される光量が少なくなり，組織を通過する光強度が大きくなる．PPG技術は、光強度が吸収性媒体中を進むと指数関数的に減少し，吸収は波長に依存することを示すBeer-Lambertの法則に基づいている．
@@ -81,7 +81,17 @@ RDAEのネットワーク構成は，CNNベースでエンコーダ4層，デコ
 
 以上より，血圧予測精度とパラメータサイズにおいて，本手法は他の手法よりも優れたモデルであるといえる．
 
+\section{計画}
+発表の日程（または次のミーティング）までに，
+
+発表スライドの作成，
+
+本論文・関連研究のさらなる読み込みを行う．
+
 \begin{thebibliography}{}
-\item
+    \bibitem{ppg} Moraes, J. L., Rocha, M. X., Vasconcelos, G. G., Vasconcelos Filho, J. E., De Albuquerque, V. H. C., and Alexandria, A. R. (2018). Advances in photopletysmography signal analysis for biomedical applications. Sensors, 18(6), 1894.
 \end{thebibliography}
+% &を直接書くとエラーになるので注意
+% \bibliographystyle{jplain} %参考文献出力スタイル
+% \bibliography{week4} %hoge.bibから拡張子を外した名前
 \end{document}
