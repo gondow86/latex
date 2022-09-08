@@ -1,0 +1,115 @@
+\documentclass[a4j, dvipdfmx]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+% \usepackage[dvipdfmx, draft]{graphicx}  % Output only frame of figure
+\usepackage{amsmath, amssymb}  % Extend math
+\usepackage{float}  % Improved interface for floating objects
+\usepackage{multirow}  % Create complex table
+\usepackage{url}  % Display URL
+\usepackage{subcaption}  % Use subcaption
+\usepackage{tabularx}  % Newline in table cell
+\usepackage{here}
+
+\begin{document}
+\title{週間進捗報告}
+\author{権藤陸}
+\date{2022年8月24日}
+\maketitle
+
+\section{進捗}
+\begin{itemize}
+    \item 先週のweekly reportに関する修正
+    \item DDLM(Distributed Deep Learning Model)に関するサーベイ
+\end{itemize}
+
+\section{DDLMについて}
+\subsection{DDLMの利点\cite{ddlm}}
+DDLMというモデルは，双極子という対となる電気的な極に例えられる概念を導入し，クローズセットとオープンセット（テストセットに未知の人物が含まれる）の両方で人間識別の精度を上げることに成功した．
+双極子は，既知のアイデンティティごとに1つ設定され，負極に同一人物のサンプル（特徴量）が集まり，正極は可能な限りサンプルを遠ざけるように学習を進める．
+テストの段階では，サンプルと極の間の距離によって，サンプルがどのIDに属するかを決定する．負極までの距離が設定された閾値よりも小さいか，正極までの距離が設定された距離よりも大きい場合にある特定のIDであると判断し，
+そのどちらの基準も満たさない場合は未知の人物として判断される．
+
+\subsection{DDLMの課題}
+未知の人物は"unknown"としか分類されないため，未知の人物が誰であるかを分類したい場合には再学習が必要になる．
+学習にかかる時間は言及されていないため不明だが，アプリケーションとしてのリアルタイム性は保証されないと考えられる．
+よって実用上は，既知の人物のみしか入らないはずの建物内における侵入者検知などに限られる．
+
+
+\subsubsection{DDLMの応用例\cite{MD}}
+DDLMの応用例として，歩行MD(Micro Doppler)シグネチャに基づくオープンセットの個人識別がある．
+FMCWレーダで得た歩行に関する特徴量を入力として，DDLMで識別した結果，93.9\%の精度を達成した．
+本論文では，DDLMは比較対象のモデルとして実験がなされていたが，SoftMax Loss, Center Loss, Cosine Lossを組み合わせたTriple Joint Lossを用いた提案法では95.5\%を達成している．
+使用されたデータセットは下図のような歩行シナリオで，11名のサンプルを収集し，10名を既知(学習に使用しない)，1名を未知(テストにのみ使用)としてサンプルが収集された．
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\linewidth]{"./image/MD_dataset.png"}
+\caption{実験の正面図と上面図}
+\label{fig:}\vspace{0zh}\end{figure}
+
+
+\section{心拍を用いた人物識別\cite{heartID}}
+% \subsection{心音+歩行特徴を用いた人物識別(dual biometric)}
+
+24GHzドップラーレーダで得た心拍信号を短時間フーリエ変換でスペクトログラムへ変換し，それらをDCNN(Deep Convolutional Neural Network)へ入力する．
+得た信号に対して，実験の結果，時間窓を0.139秒，スライディングステップを1/2000秒として適用した．
+4人の異なる人物の心拍信号に短時間フーリエ変換を行って得たスペクトログラムは，以下のようになった．
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.6\linewidth]{"./spectrogram.png"}
+\caption{4人の被験者の心拍信号のスペクトログラム}
+\vspace{0zh}
+\end{figure}
+
+DCNNはAlexNetを基にしたネットワークであり，以下のような構造である．
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.9\linewidth]{"./alexnet.png"}
+\caption{DCNNの全体構造と初め2層の構造}
+\vspace{0zh}
+\end{figure}
+
+本論文では特徴量として，心拍の周期，心拍のエネルギー，ドップラー信号の帯域幅を使用した．
+レーダ信号の全エネルギーについては，$Eを信号の全エネルギー，S_{B}$をレーダ信号とすると，以下のように表される．
+
+\begin{equation}\label{}
+E = \int S_{B}(t) * S_{B}^{*}(t)
+\end{equation}
+
+損失関数$J(\theta)$は，
+
+\begin{equation}\label{}
+J(\theta) = -\frac{1}{m} [\sum_{i=1}^{m} \sum_{j=1}^{k}1\{y_{i}=j\} log\frac{\exp{(\theta_{i}^T x_{i})}}{\sum_{l=1}^{k} \exp{(\theta_{l}^{T} x_i)}}]
+\end{equation}
+
+学習には確率的勾配降下法を用いて，ネットワークが収束するか最大反復に達するまで学習を繰り返し，損失関数$J (\theta)$を最小化する．
+
+DCNNの他に，SVM，Naive Bayes, SVMとNaive Bayesを組み合わせた手法と比較した．
+結果は以下のようになった．
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\linewidth]{"./DCNN_result.png"}
+\caption{人数を変化させた場合の分類精度}
+\vspace{0zh}
+\end{figure}
+
+\begin{figure}[H]\centering
+\caption{人数が4人の場合の各アルゴリズムの精度比較}
+\includegraphics[width=0.8\linewidth]{"./DCNN_comparison.png"}
+\vspace{0zh}
+\end{figure}
+% \subsection{サーベイ(wireless sensing survey)}
+
+\section{計画}
+\begin{itemize}
+    \item DDLMの実装
+    \item バイタルサインに基づく人物識別のサーベイ
+    \item 夏合宿用の資料用意
+\end{itemize}
+
+\begin{thebibliography}{99}
+    \bibitem{ddlm} Yan, Baiju, et al. ”Heart signatures: Open-set person identification based on cardiac radar signals.” Biomedical Signal Processing and Control 72 (2022): 103306.
+    \bibitem{MD} Y. Yang, B. Huang and Z. Ni, "Open-set Person Identification with Triple-Joint Loss Based on Radar Gait Micro-Doppler Signatures," 2022 7th International Conference on Intelligent Computing and Signal Processing (ICSP), 2022, pp. 1787-1791, doi: 10.1109/ICSP54964.2022.9778544.
+    \bibitem{heartID} Cao, Peibei, Weijie Xia, and Yi Li. 2019. "Heart ID: Human Identification Based on Radar Micro-Doppler Signatures of the Heart Using Deep Learning" Remote Sensing 11, no. 10: 1220. https://doi.org/10.3390/rs11101220
+\end{thebibliography}
+
+
+\end{document}
