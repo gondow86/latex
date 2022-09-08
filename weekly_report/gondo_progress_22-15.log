@@ -1,9 +1,9 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  16 JUL 2022 16:11
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  19 AUG 2022 22:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/workdir/gondo_progress_22-12.tex
-(/workdir/gondo_progress_22-12.tex
+**/workdir/gondo_progress_22-15.tex
+(/workdir/gondo_progress_22-15.tex
 pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
 L3 programming layer <2022-01-21>
 (/usr/local/texlive/2021/texmf-dist/tex/platex/jsclasses/jsarticle.cls
@@ -184,114 +184,189 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks24
 \@floatcapt=\box72
 )
+(/usr/local/texlive/2021/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen181
+\captionmargin@=\dimen182
+\captionwidth=\dimen183
+\caption@tempdima=\dimen184
+\caption@indent=\dimen185
+\caption@parindent=\dimen186
+\caption@hangindent=\dimen187
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->{\small \advance \lefts
+kip .0628\linewidth \advance \rightskip .0628\linewidth \vskip \abovecaptionski
+p \sbox \@tempboxa {#1\hskip 1zw\relax #2}\ifdim \wd \@tempboxa <\hsize \center
+ing \fi #1{\hskip 1zw\relax }#2\par \vskip \belowcaptionskip } on input line 11
+39.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count276
+\c@continuedfloat=\count277
+Package caption Info: float package is loaded.
+)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-dvipdfmx.def
 File: l3backend-dvipdfmx.def 2022-01-12 L3 backend support: dvipdfmx
 
 (|extractbb --version)
-\c__kernel_sys_dvipdfmx_version_int=\count276
-\l__color_backend_stack_int=\count277
-\g__color_backend_stack_int=\count278
-\g__graphics_track_int=\count279
+\c__kernel_sys_dvipdfmx_version_int=\count278
+\l__color_backend_stack_int=\count279
+\g__color_backend_stack_int=\count280
+\g__graphics_track_int=\count281
 \l__pdf_internal_box=\box73
-\g__pdf_backend_object_int=\count280
-\g__pdf_backend_annotation_int=\count281
-\g__pdf_backend_link_int=\count282
-) (./gondo_progress_22-12.aux)
-\openout1 = `gondo_progress_22-12.aux'.
+\g__pdf_backend_object_int=\count282
+\g__pdf_backend_annotation_int=\count283
+\g__pdf_backend_link_int=\count284
+) (./gondo_progress_22-15.aux)
+\openout1 = `gondo_progress_22-15.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 16.60605pt on input line 9.
+(Font)              scaled to size 16.60605pt on input line 10.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 16.60605pt on input line 9.
+(Font)              scaled to size 16.60605pt on input line 10.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 9.
+(Font)              scaled to size 11.53198pt on input line 10.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 9.
+(Font)              scaled to size 11.53198pt on input line 10.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 9.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
+(Font)              scaled to size 5.76599pt on input line 10.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 10.
+
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 10.
+
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 10.
+(Font)              scaled to size 13.83836pt on input line 11.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 10.
+(Font)              scaled to size 13.83836pt on input line 11.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 10.
+(Font)              scaled to size 13.83836pt on input line 11.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 10.
-File: ./img/NCVSM_diagram.png Graphic file (type bmp)
-<./img/NCVSM_diagram.png>
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 24.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 24.
+(Font)              scaled to size 13.83836pt on input line 11.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 15.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 27.
+(Font)              scaled to size 9.60999pt on input line 15.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 15.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 27.
+(Font)              scaled to size 9.60999pt on input line 15.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 28.
+(Font)              scaled to size 11.53198pt on input line 24.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 28.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 29.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 29.
- [1
+(Font)              scaled to size 11.53198pt on input line 24.
+
+
+LaTeX Warning: Citation `pointcloud' on page 1 undefined on input line 26.
+
+File: ./img/tuiseki_system.png Graphic file (type bmp)
+<./img/tuiseki_system.png>
+[1
 
 ]
-LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 39.
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 39.
-LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 39.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 39.
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 39.
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 39.
-File: ./img/unwrap_2.png Graphic file (type bmp)
-<./img/unwrap_2.png>
+File: ./img/network_architecture.png Graphic file (type bmp)
+<./img/network_architecture.png>
  [2]
-File: ./img/unwrap_1.png Graphic file (type bmp)
-<./img/unwrap_1.png>
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 6.72699pt on input line 60.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 4.805pt on input line 60.
+ [3]
+File: ./img/mID_conf.png Graphic file (type bmp)
+<./img/mID_conf.png>
+File: ./img/mID_table.png Graphic file (type bmp)
+<./img/mID_table.png>
+ [4]
 
-[3] [4] [5] (./gondo_progress_22-12.aux) ) 
+LaTeX Warning: Citation `DDLM' on page 5 undefined on input line 107.
+
+File: ./img/ddlm_framework.png Graphic file (type bmp)
+<./img/ddlm_framework.png>
+File: ./img/ddlm_model.png Graphic file (type bmp)
+<./img/ddlm_model.png>
+[5] [6]
+File: ./img/ddlm_procedure.png Graphic file (type bmp)
+<./img/ddlm_procedure.png>
+File: ./img/ddlm_dataset.png Graphic file (type bmp)
+<./img/ddlm_dataset.png>
+ [7]
+File: ./img/ddlm_openness.png Graphic file (type bmp)
+<./img/ddlm_openness.png>
+ [8]
+File: ./img/ddlm_conf.png Graphic file (type bmp)
+<./img/ddlm_conf.png>
+ [9]
+File: ./img/softmax_conf.png Graphic file (type bmp)
+<./img/softmax_conf.png>
+ [10]
+File: ./img/result_closed.png Graphic file (type bmp)
+<./img/result_closed.png>
+
+
+LaTeX Warning: Citation `respi' on page 11 undefined on input line 252.
+
+File: ./img/proposed_dnn.png Graphic file (type bmp)
+<./img/proposed_dnn.png>
+[11]
+File: ./img/doppler_signal.png Graphic file (type bmp)
+<./img/doppler_signal.png>
+ [12]
+File: ./img/knn_proposed.png Graphic file (type bmp)
+<./img/knn_proposed.png>
+
+
+LaTeX Warning: Citation `MD' on page 13 undefined on input line 307.
+
+
+LaTeX Warning: Citation `motion' on page 13 undefined on input line 315.
+
+[13] [14] (./gondo_progress_22-15.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3094 strings out of 480241
- 47888 string characters out of 5895801
- 343084 words of memory out of 5000000
- 21362 multiletter control sequences out of 15000+600000
- 485851 words of font info for 104 fonts, out of 8000000 for 9000
+ 4400 strings out of 480241
+ 74109 string characters out of 5895801
+ 371184 words of memory out of 5000000
+ 22652 multiletter control sequences out of 15000+600000
+ 484157 words of font info for 97 fonts, out of 8000000 for 9000
  19 hyphenation exceptions out of 8191
- 55i,7n,62p,451b,346s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,6n,63p,701b,434s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on gondo_progress_22-12.dvi (5 pages, 12372 bytes).
+Output written on gondo_progress_22-15.dvi (14 pages, 33700 bytes).
