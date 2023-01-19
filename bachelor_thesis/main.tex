@@ -55,6 +55,7 @@
 
 \jmaketitle		% 表紙（日本語）、不要ならコメントアウト
 
+%%%　アブストラクト
 \begin{jabstract}
 
 テンプレートの説明を，テンプレート自身を使って説明する．これは卒業論文のための\LaTeX テンプレートで，本当は卒業論文のために作成したものだけどでもたぶんきっと修士論文にも使えると思う．
@@ -96,14 +97,32 @@
 第\ref{chap_introduction}章では本テンプレートの概要みたいなものを書いた．
 
 
+
+\chapter{ドップラーレーダの原理}
+\begin{equation*} f_{\mathrm{ Doppler}} = \mp \frac {4 \pi vt}{\lambda } \times \frac {1}{2 \pi t} = \mp \frac {2v}{\lambda },\tag{1}\end{equation*}
+
+\begin{equation*} B(t)=\cos \left({\theta +\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right),\tag{2}\end{equation*}
+
+\begin{align*} I(t)=&\cos \left({\theta +\frac {\pi }{4}+\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right), \tag{3}\\ Q(t)=&\cos \left({\theta -\frac {\pi }{4}+\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right).\tag{4}\end{align*}
+
+\chapter{関連研究}
+
+\chapter{従来法}
+
 \chapter{提案法}
+提案法のアルゴリズムを図\ref{fig:proposed_method}に示す．
+本提案では，6ポートのドップラーレーダで取得したI/Qデータを用いた．
+I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以外に，体動などの外乱ノイズやレーダのキャリブレーションによるノイズが含まれている．
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.5\linewidth]{./fig/proposed_method.pdf}
 \end{center}
 \caption{提案法のアルゴリズム}
+\label{fig:proposed_method}
 \end{figure}
+
+\chapter{結論}
 
 \chapter{それ以降の書き方}
 \section{構成}
@@ -127,13 +146,6 @@
 \section{参考文献について}
 このテンプレ中では{\tt thebibliography}を使用しているが，BibTexのほうが使いやすいと思う場合は変更すること．
 引用フォーマットに関しては，IEEEのフォーマット{\tt IEEETran}に筆者は合わせた．
-
-\section{The principal of Doppler radar}
-\begin{equation*} f_{\mathrm{ Doppler}} = \mp \frac {4 \pi vt}{\lambda } \times \frac {1}{2 \pi t} = \mp \frac {2v}{\lambda },\tag{1}\end{equation*}
-
-\begin{equation*} B(t)=\cos \left({\theta +\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right),\tag{2}\end{equation*}
-
-\begin{align*} I(t)=&\cos \left({\theta +\frac {\pi }{4}+\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right), \tag{3}\\ Q(t)=&\cos \left({\theta -\frac {\pi }{4}+\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right).\tag{4}\end{align*}
 
 % 謝辞
 \begin{acknowledgment}
@@ -166,7 +178,7 @@
 % 付録
 \chapter{付録の例}
 
-付録を無理矢理出力させるため，てきとうなことを書く．
+付録を無理矢理出力させるため，てきとうなことを書く
 
 \section{付録1}
 
