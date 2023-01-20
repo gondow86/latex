@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  20 JAN 2023 07:17
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  20 JAN 2023 18:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -343,33 +343,37 @@ File: ./fig/proposed_method.pdf Graphic file (type pdf)
 第 6 章
 [9
 
-]
+] [10]
 第 7 章
-[10
+[11
 
-] [11] [12
+]
+第 8 章
+[12
+
+] [13] [14
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 213.
+(Font)              No change on input line 233.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 227.
+(Font)              No change on input line 247.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 232.
- [13
+(Font)              No change on input line 252.
+ [15
 
 ]
 付 録 A  
-[14
+[16
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  3312 strings out of 480241
  51511 string characters out of 5895801
- 346351 words of memory out of 5000000
+ 347351 words of memory out of 5000000
  21566 multiletter control sequences out of 15000+600000
  485558 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,11n,62p,411b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (20 pages, 23112 bytes).
+Output written on main.dvi (22 pages, 25572 bytes).
