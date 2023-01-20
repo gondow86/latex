@@ -108,11 +108,51 @@
 \chapter{関連研究}
 
 \chapter{従来法}
+本章では，本研究と同様に心拍信号を用いて人物識別を行った研究について述べる．
+
+\section{心拍信号のスペクトログラムを用いた深層学習による人物識別\cite{paper:HeartID}}
+\subsection{手法}
+24 GHz？ドップラーレーダを用いて取得した心拍信号に対し，STFT(Short Time Fourier Transform)を実行して得たスペクトログラムが入力である．
+そして，時間軸と周波数軸で表現された特徴量をAlexNetを基にしたDCNN(Deep Convolutional Neural Network)で抽出し，4人の人物識別をクローズセット環境下で行った．
+\cite{paper:HeartID}では，人物識別における深層学習の有用性を示している．比較手法として，SVM(Support Vector Machine), Naive Bayes, そしてそれらを組み合わせた手法のSVM-Bayesが挙げられており，用いられた手動の特徴量は以下の三種である．一つ目は，心拍信号の周期，二つ目は心拍信号のエネルギー，三つ目はドップラー信号の帯域幅である．
+
+\subsection{実験結果}
+先ほども触れたとおり，DCNNを用いた手法は伝統的な機械学習手法の精度を上回った．表\ref{table:HeartID}に各手法ごとの4人の被験者のクローズセット環境下における精度の比較を示す．
+
+\begin{table}[H]
+\caption{各手法における4人の被験者のクローズセット環境下における精度の比較}
+\centering
+\begin{tabular}{c|c}
+\hline
+DCNN & 98.5\% \\
+SVM-Bayes & 91.25\% \\
+SVM & 88.75\% \\
+Naive Bayes & 80.75\% \\
+\hline
+\end{tabular}
+\label{table:HeartID}
+\end{table}
+
+\section{心拍信号を基にした，双極子深層学習モデルによるオープンセット環境下における人物識別\cite{paper:HeartSignature}}
+\section{心拍信号を基にした，転移学習とアンサンブル学習を用いたオープンセット環境下における人物識別\cite{paper:Xing}}
 
 \chapter{提案法}
 提案法のアルゴリズムを図\ref{fig:proposed_method}に示す．
 本提案では，6ポートのドップラーレーダで取得したI/Qデータを用いた．
-I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以外に，体動などの外乱ノイズやレーダのキャリブレーションによるノイズが含まれている．
+I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以外に，体動やI/Qチャネル間の振幅と位相の不均衡に起因するノイズが含まれている.
+
+まずI/Qチャネル間の不均衡補償を行うため，楕円フィッティングを用いた．I/Qデータが推定された理想的な楕円に近似されることで，より正確な変位信号を得ることができる\cite{paper:ellipse1}\cite{paper:ellipse2}．
+そして，補償されたI/Qデータにアークタンジェント復調を施すことで，アンラップされた位相値を得ることができる．
+
+そして位相値の変化を$\Delta \sigma$，周波数を$f$, 光速を$c$とすれば，胸壁の相対距離の変化$\Delta x$は，次式のように計算できる．
+
+\begin{equation}
+	\Delta x = \frac{\Delta \sigma}{2 \pi} \cdot \frac{\lambda}{2}
+	\end{equation}
+
+本稿では，ノイズの少ないデータセットとノイズの多いデータセットの2つを使用するが，後者の場合にはこのあとウェーブレット再構成を行う．
+胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切な閾値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．今回はレベルを8，マザーウェーブレットをDaubechies8とした．閾値処理では，最も高周波な成分を0として取り除いた．
+
 
 \begin{figure}[H]
 \begin{center}
@@ -171,7 +211,26 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
   Taro Hogeyama, Jiro Hogeyama:
   \newblock The Theory of Hoge,
   \newblock {\it The Proceedings of The Hoge Society}, 2008.
+
+  \bibitem{paper:HeartID}
+  AAA
+
+\bibitem{paper:HeartSignature}
+  Yang Bajiu, 
+
+\bibitem{paper:Xing}
+  Zelin Xing, 
 	
+\bibitem{paper:ellipse1}
+  Aditya Singh, Xiaomeng Gao, Ehsan Yavari, Mari Zakrzewski, Xi Hang Cao, Victor M. Lubecke, Olga Boric-Lubecke
+  \newblock Data-Based Quadrature Imbalance Compensation for a CW Doppler Radar System
+  \newblock {\it IEEE Transactions on Microwave Theory and Techniques}, Vol.61, No.4, pp.1718-1724, 2013.
+
+\bibitem{paper:ellipse2}
+  Mari Zakrzewski, Aditya Singh, Ehsan Yavari, Xiaomeng Gao, Olga Boric-Lubecke, Jukka Vanhala, Karri Palovuori
+  \newblock Quadrature Imbalance Compensation With Ellipse-Fitting Methods for Microwave Radar Physiological Sensing
+  \newblock {\it IEEE Transactions on Microwave Theory and Techniques}, Vol.62, No.6, pp.1400-1408, 2014.
+
 \end{bib}
 
 \appendix

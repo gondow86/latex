@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  19 JAN 2023 10:23
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  20 JAN 2023 07:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -294,19 +294,19 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 71.
  [1]
-(./main.toc)
+(./main.toc [2])
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
- [2] (./main.lof)
+ [3] (./main.lof)
 \tf@lof=\write4
 \openout4 = `main.lof'.
 
- [3] (./main.lot)
+ [4] (./main.lot)
 \tf@lot=\write5
 \openout5 = `main.lot'.
 
- [4]
+ [5]
 第 1 章
 [1
 
@@ -320,45 +320,56 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 
 ]
 第 4 章
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 114.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 114.
+
+Overfull \hbox (4.49944pt too wide) in paragraph at lines 115--118
+[]\OT1/cmr/m/n/12 24 GHz \JY1/mc/m/n/12 ？ ド ッ プラ ーレ ーダを用いて取得した
+心拍信号に対し ， \OT1/cmr/m/n/12 STFT(Short
+ []
+
 [4
 
-]
+] [5]
 第 5 章
+[6
+
+]
 File: ./fig/proposed_method.pdf Graphic file (type pdf)
 <./fig/proposed_method.pdf>
-[5
-
-] [6]
+ [7] [8]
 第 6 章
-[7
+[9
 
 ]
 第 7 章
-[8
+[10
 
-] [9] [10
+] [11] [12
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 172.
- [11
+(Font)              No change on input line 213.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 227.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 232.
+ [13
 
 ]
 付 録 A  
-LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 186.
-LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 186.
-[12
+[14
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3304 strings out of 480241
- 51392 string characters out of 5895801
+ 3312 strings out of 480241
+ 51511 string characters out of 5895801
  346351 words of memory out of 5000000
- 21558 multiletter control sequences out of 15000+600000
+ 21566 multiletter control sequences out of 15000+600000
  485558 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,11n,62p,379b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,11n,62p,411b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (17 pages, 14420 bytes).
+Output written on main.dvi (20 pages, 23112 bytes).
