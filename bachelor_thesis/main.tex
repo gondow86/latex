@@ -181,6 +181,20 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 
 所望の信号を得られたら，次にセグメンテーションを行う．詳細な諸元については第6章で述べるが，セグメントのウィンドウ長は5秒，隣り合うセグメントとのオーバーラップは1.5秒とした．
 
+そしてセグメントは1次元のCNN(Convolutional Neural Network)によって学習が行われる．今回は時系列データの学習に適したInceptionTime\cite{paper:InceptionTime}というモデルを採用した．
+図\ref{fig:InceptionTime}にモデルの概要を示す．
+InceptionTimeの特徴として，画像認識で高い精度を残したInceptionモジュール\cite{paper:Inception}が6つ積み重ねられ，時系列データ用に特化させたことが挙げられる．
+Inceptionモジュールは，様々な大きさの畳み込み層とmaxプーリングの出力を結合させて
+また，ResNet\cite{paper:ResNet}に代表される残差接続を採用している点も大きな特徴の1つである．
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\linewidth]{./fig/InceptionTime.png}
+\end{center}
+\caption{InceptionTimeの構造概要}
+\label{fig:InceptionTime}
+\end{figure}
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.5\linewidth]{./fig/proposed_method.pdf}
@@ -211,25 +225,6 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 
 
 \chapter{結論}
-
-\chapter{それ以降の書き方}
-\section{構成}
-基本的に，以下のような流れになるが，これに従う必要はない．
-おそらく{\tt subsection}や{\tt subsubsection}でまとめる場合もあるはず．
-
-\begin{enumerate}
-	\item 序論
-	\item 関連研究
-	\item 従来法
-	\item 提案法
-	\item 実験・評価
-	\item 考察
-	\item 結論
-	\item 参考文献
-\end{enumerate}
-
-わからなければ，今までサーベイした国際会議の論文や，先輩の卒業論文を参考にしよう．
-分量としては，一般的な国内研究会・国際会議のスタイル (2カラム10ポイント) で5・6枚程度の論文の場合，卒論のスタイルファイルに当てはめると40枚超にはなるはず．
 
 \section{参考文献について}
 このテンプレ中では{\tt thebibliography}を使用しているが，BibTexのほうが使いやすいと思う場合は変更すること．
@@ -278,6 +273,17 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
   Mari Zakrzewski, Aditya Singh, Ehsan Yavari, Xiaomeng Gao, Olga Boric-Lubecke, Jukka Vanhala, Karri Palovuori
   \newblock Quadrature Imbalance Compensation With Ellipse-Fitting Methods for Microwave Radar Physiological Sensing
   \newblock {\it IEEE Transactions on Microwave Theory and Techniques}, Vol.62, No.6, pp.1400-1408, 2014.
+
+\bibitem{paper:InceptionTime}
+  Hassan Ismail Fawaz, Benjamin Lucas, Germain Forestier, Chalotte Pelletier, Daniel F. Schmidt, Jonathan Weber, Geoffrey I. Webb, Lhassane Idoumaghar, Pierre-Alain Muller, Francois Petitjean
+  \newblock InceptionTime: Finding AlexNet for time series classification
+  \newblock {\it Data Mining and Knowledge Discovery}, Vol.34, No.6, pp.1936-1962, 2020.
+
+\bibitem{paper:Inception}
+Szegedy, Christian, et al. "Inception-v4, inception-resnet and the impact of residual connections on learning." Thirty-first AAAI conference on artificial intelligence. 2017.
+
+\bibitem{paper:ResNet}
+He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
 
 \end{bib}
 

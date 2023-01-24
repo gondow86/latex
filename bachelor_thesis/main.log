@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  24 JAN 2023 14:04
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  24 JAN 2023 19:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -342,6 +342,8 @@ LaTeX Warning: Reference `fig:HeartSignature' on page 6 undefined on input line
 [8
 
 ]
+File: ./fig/InceptionTime.png Graphic file (type bmp)
+<./fig/InceptionTime.png>
 File: ./fig/proposed_method.pdf Graphic file (type pdf)
 <./fig/proposed_method.pdf>
  [9] [10]
@@ -352,24 +354,22 @@ File: ./fig/proposed_method.pdf Graphic file (type pdf)
 第 7 章
 [13
 
-]
-第 8 章
-[14
-
-] [15] [16
+] [14
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 261.
+(Font)              No change on input line 256.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 270.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
 (Font)              No change on input line 275.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
 (Font)              No change on input line 280.
- [17
+ [15
 
-]
+] [16]
 付 録 A  
-[18
+[17
 
 ] (./main.aux)
 
@@ -377,12 +377,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3313 strings out of 480241
- 51531 string characters out of 5895801
+ 3323 strings out of 480241
+ 51740 string characters out of 5895801
  347351 words of memory out of 5000000
- 21567 multiletter control sequences out of 15000+600000
+ 21575 multiletter control sequences out of 15000+600000
  485558 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,11n,62p,432b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (24 pages, 29508 bytes).
+Output written on main.dvi (23 pages, 30288 bytes).
