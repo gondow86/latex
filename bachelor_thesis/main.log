@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  20 JAN 2023 18:31
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  24 JAN 2023 14:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -333,47 +333,56 @@ Overfull \hbox (4.49944pt too wide) in paragraph at lines 115--118
 [4
 
 ] [5]
+
+LaTeX Warning: Reference `fig:HeartSignature' on page 6 undefined on input line
+ 148.
+
+[6] [7]
 第 5 章
-[6
+[8
 
 ]
 File: ./fig/proposed_method.pdf Graphic file (type pdf)
 <./fig/proposed_method.pdf>
- [7] [8]
+ [9] [10]
 第 6 章
-[9
-
-] [10]
-第 7 章
 [11
+
+] [12]
+第 7 章
+[13
 
 ]
 第 8 章
-[12
+[14
 
-] [13] [14
+] [15] [16
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 233.
+(Font)              No change on input line 261.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 247.
+(Font)              No change on input line 275.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 252.
- [15
+(Font)              No change on input line 280.
+ [17
 
 ]
 付 録 A  
-[16
+[18
 
-] (./main.aux) ) 
+] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3312 strings out of 480241
- 51511 string characters out of 5895801
+ 3313 strings out of 480241
+ 51531 string characters out of 5895801
  347351 words of memory out of 5000000
- 21566 multiletter control sequences out of 15000+600000
+ 21567 multiletter control sequences out of 15000+600000
  485558 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,11n,62p,411b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,11n,62p,432b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (22 pages, 25572 bytes).
+Output written on main.dvi (24 pages, 29508 bytes).
