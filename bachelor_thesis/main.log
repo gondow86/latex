@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  24 JAN 2023 19:56
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  25 JAN 2023 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -312,77 +312,86 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 
 ]
 第 2 章
+
+LaTeX Warning: Reference `fig:radar' on page 2 undefined on input line 100.
+
+File: ./fig/radar_figure_trim.pdf Graphic file (type pdf)
+<./fig/radar_figure_trim.pdf>
 [2
 
-]
+] [3]
 第 3 章
-[3
+[4
 
 ]
 第 4 章
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 114.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 133.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 114.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 133.
 
-Overfull \hbox (4.49944pt too wide) in paragraph at lines 115--118
+Overfull \hbox (4.49944pt too wide) in paragraph at lines 134--137
 []\OT1/cmr/m/n/12 24 GHz \JY1/mc/m/n/12 ？ ド ッ プラ ーレ ーダを用いて取得した
 心拍信号に対し ， \OT1/cmr/m/n/12 STFT(Short
  []
 
-[4
+[5
 
-] [5]
+] [6]
 
-LaTeX Warning: Reference `fig:HeartSignature' on page 6 undefined on input line
- 148.
+LaTeX Warning: Reference `fig:HeartSignature' on page 7 undefined on input line
+ 167.
 
-[6] [7]
+[7] [8]
 第 5 章
-[8
+[9
 
 ]
 File: ./fig/InceptionTime.png Graphic file (type bmp)
 <./fig/InceptionTime.png>
+ [10]
 File: ./fig/proposed_method.pdf Graphic file (type pdf)
 <./fig/proposed_method.pdf>
- [9] [10]
+ [11] [12]
 第 6 章
-[11
-
-] [12]
-第 7 章
 [13
 
-] [14
+] [14]
+第 7 章
+[15
+
+] [16
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 256.
+(Font)              No change on input line 284.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 270.
+(Font)              No change on input line 298.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 275.
+(Font)              No change on input line 303.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 280.
- [15
+(Font)              No change on input line 308.
+ [17
 
-] [16]
+] [18]
 付 録 A  
-[17
+[19
 
 ] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 3323 strings out of 480241
- 51740 string characters out of 5895801
+ 3333 strings out of 480241
+ 51956 string characters out of 5895801
  347351 words of memory out of 5000000
- 21575 multiletter control sequences out of 15000+600000
+ 21584 multiletter control sequences out of 15000+600000
  485558 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,11n,62p,432b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,8n,62p,432b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (23 pages, 30288 bytes).
+Output written on main.dvi (25 pages, 32820 bytes).

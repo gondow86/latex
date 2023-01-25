@@ -79,16 +79,12 @@
 \chapter{序論}
 \label{chap_introduction}
 
-論文は序論のようなもので始める．タイトルは序論でも序言でもはじめにでもいいけど，『序論』で始めたら『結論』で終わり，『序言』で始めたら『結言』で終わるようにする．『はじめに』なら『おわりに』で終わる．『序論』で始まって『おわりに』でおわるとか，そういうちぐはぐなのはだ．
-
-ここでは序論として書く．序論では，研究の背景やら目的やらを書くのが普通．今はテンプレートの説明なので，大して書くことは無い．
-
-このような高齢者の家庭内事故の現状を踏まえると，高齢者が最も遭遇しやすい事故は屋内での転倒・転落事故と推定され，
-これらの異常事態の迅速かつ高精度な検知が今後の見守りシステムにおける重要課題と言える．
-
 \section{背景}
-
-卒論向けテンプレ
+近年，非接触で行う人物識別が注目を集めている．
+非接触な識別は，見守りシステムや侵入者検知，認証など様々な場面で応用が可能であると考えられる．
+識別には，心電図(ECG: ElectroCardioGram)やレーダを用いて取得した心拍や呼吸による胸壁変位，心音等が主に用いられる．
+レーダの種類にはCW(Continuous Wave)レーダ（ドップラーレーダ）やFMCW(Frequency Modulated Continuous Wave)レーダが
+近年，ドップラーレーダは様々な研究において，人間の生体信号を非接触に検出するハードウェアとして注目を集めている．
 
 \section{本文書の構成}
 
@@ -99,11 +95,34 @@
 
 
 \chapter{ドップラーレーダの原理}
-\begin{equation*} f_{\mathrm{ Doppler}} = \mp \frac {4 \pi vt}{\lambda } \times \frac {1}{2 \pi t} = \mp \frac {2v}{\lambda },\tag{1}\end{equation*}
+本章では，胸壁の変位を取得するためのドップラーレーダの基本原理について述べる．
+レーダの基本原理はいくつかの研究で説明されている．
+レーダを人間の胸部へ波を送り，反射した波を取得する様子を図\ref{fig:radar}に示す．
+レーダで照射した対象が変位すると，ドップラー効果により反射波の周波数が変化し，ドップラーシフトが発生する．
+送信波$T(t)$と受信波$R(t)$は式\ref{eq:transmit}，\ref{eq:receive}のように表せる．
+\begin{equation}\label{eq:transmit}
+  T(t) = A_{T} \cos (2\pi ft + \phi (t))
+\end{equation}
+\begin{equation}\label{eq:receive}
+  R(t) = A_{R} \cos (2\pi ft - \frac{4\pi d_0}{\lambda} - \frac{4\pi x(t)}{\lambda} + \phi (t-\frac{2d_0}{c}))
+\end{equation}
+ただし，$A_T$, $A_R$はそれぞれ送信波と受信波の振幅，$f$は搬送波の周波数，$\lambda$は搬送波の波長，$d_0$はレーダと身体表面との距離，$\phi (t)$は位相ノイズ，$x(t)$は心拍により生じる胸壁変位である．
 
-\begin{equation*} B(t)=\cos \left({\theta +\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right),\tag{2}\end{equation*}
+$R(t)$がダウンコンバートされると，2つのベースバンド信号が得られ，同相信号$I(t)$と直交信号$Q(t)$は，式\ref{eq:i_signal}, \ref{eq:q_signal}のように表せる．
+\begin{equation}\label{eq:i_signal}
+  I(t) = A_{I} \cos (\frac{4\pi x(t)}{\lambda} + \frac{4\pi d_0}{\lambda} + \theta + \frac{\pi}{4} + \Delta \phi (t))
+\end{equation}
+\begin{equation}\label{eq:q_signal}
+  Q(t) = A_Q \cos (\frac{4\pi x(t)}{\lambda} + \frac{4\pi d_0}{\lambda} + \theta - \frac{\pi}{4} + \Delta \phi (t))
+\end{equation}
+$A_I, A_Q$はそれぞれ$I/Q$信号の振幅，$\theta$は初期位相シフトである．
 
-\begin{align*} I(t)=&\cos \left({\theta +\frac {\pi }{4}+\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right), \tag{3}\\ Q(t)=&\cos \left({\theta -\frac {\pi }{4}+\frac {4\pi x_{h}(t)}{\lambda }+\Delta \Phi (t)}\right).\tag{4}\end{align*}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\linewidth]{./fig/radar_figure_trim.pdf}
+\end{center}
+\caption{被験者に対しドップラーレーダで照射した様子}
+\end{figure}
 
 \chapter{関連研究}
 
@@ -163,6 +182,9 @@ Naive Bayes & 80.75\% \\
 \section{心拍信号を基にした，転移学習とアンサンブル学習を用いたオープンセット環境下における人物識別\cite{paper:Xing}}
 
 \chapter{提案法}
+\section{従来法の問題点と提案法}
+
+\section{提案法のアルゴリズム}
 提案法のアルゴリズムを図\ref{fig:proposed_method}に示す．
 本提案では，6ポートのドップラーレーダで取得したI/Qデータを用いた．
 I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以外に，体動やI/Qチャネル間の振幅と位相の不均衡に起因するノイズが含まれている.
@@ -233,7 +255,13 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 % 謝辞
 \begin{acknowledgment}
 
-謝辞には，お世話になった先生，先輩，後輩，友人など，感謝の気持ちを書く．論文が『である』調でも，謝辞だけは『ですます』調で書くひともいる．
+本研究を進めるにあたり，始終適切な御指導と御助言を賜りました慶應義塾大学理工学部情報工学科の大槻知明教授に深く感謝いたします．
+
+また，本研究に関して多くの御指導をしてくださった大槻研究室の皆様に心から感謝いたします．
+
+\rightline{令和 5 年 2 月 3 日}
+\rightline{慶應義塾大学理工学部情報工学科大槻研究室}
+\rightline{権藤 陸}
 
 \end{acknowledgment}
 
