@@ -77,21 +77,38 @@
 \pagenumbering{arabic}
 
 \chapter{序論}
-\label{chap_introduction}
 
 \section{背景}
-近年，非接触で行う人物識別が注目を集めている．
-非接触な識別は，見守りシステムや侵入者検知，認証など様々な場面で応用が可能であると考えられる．
-識別には，心電図(ECG: ElectroCardioGram)やレーダを用いて取得した心拍や呼吸による胸壁変位，心音等が主に用いられる．
+人物識別は多様なアプリケーションで利用されている．
+従来の識別は，指紋認証や顔認証といった対象となる人物の意図的な接触や協力が必要である．
+また，パスワードを記憶しておく必要があったり，トークンを保持しておく必要がある\ref{paper:password}．
+特にカメラベースの識別は数多く考案されているものの，いずれもプライバシー保護の観点で問題があると言える．
+そこで近年，外的環境要因に強く，コストが低い，プライバシーの保護という観点から非接触で行うレーダベースの人物識別が注目を集めている．外的環境要因とは具体的に言えば，使用環境の照度，雪や霧といった悪天候，障害物などである．
+レーダを用いた識別は，見守りシステムや侵入者検知，継続的な認証など様々な場面における応用が期待されている．
+継続的な認証とは，
+レーダーベースの識別では，心拍や呼吸といった生体信号や，歩行特徴といった信号を基に識別が行われるが，それらの信号には人物に固有の特徴が含まれるため，なりすましがされにくいというメリットもある．一方で体動によるノイズに弱く，それらをどのように除去するかは課題の1つとなっている．
+
 レーダの種類にはCW(Continuous Wave)レーダ（ドップラーレーダ）やFMCW(Frequency Modulated Continuous Wave)レーダが
 近年，ドップラーレーダは様々な研究において，人間の生体信号を非接触に検出するハードウェアとして注目を集めている．
+・心拍や呼吸によって引き起こされる胸壁変位を検出可能である．
+・レーダは主にマイクロ波を用いるため，
+・LiDAR(Light Detection And Ranging)は環境要因に影響を受けやすい(unsupervised)
+・ウェアラブルセンサーは対象人物の協力が必要(unsupervised)
+・Wi-Fiはチャネルが混雑しており，干渉や環境ノイズの影響を強く受ける(unsupervised)
+・ECG(Electrocardiogram)を用いるのは，高い識別精度が得られるが，測定機器を持ち運ぶ必要があり，それを対象人物に装着する必要があるため，あまり実用的ではない．(Xing)
+
+心拍や呼吸といった生体信号を用いた人物識別研究の多くは，テスト時に未知の人物が含まれないクローズセット環境下における評価をしており，テスト時に未知の人物が含まれるオープンセット環境下での評価を行っていない．
+そこで本研究では，オープンセット環境下におけるレーダ心拍信号を用いた人物識別を行う．ここではオープンセット環境を，既知の人物のクラス数を$N$として，未知の人物であるというクラスを1つ加えた$N+1$個のクラスでの識別と定義する．
+
 
 \section{本文書の構成}
-
-第1章の最後は，文書全体の構成を大まかに書くとよいらしい．
-
-第\ref{chap_introduction}章では本テンプレートの概要みたいなものを書いた．
-
+本論文は次のように構成される．
+第1章では，人物識別における背景と意義を述べた．
+第2章では，ドップラーレーダの基本原理について触れておく．
+第3章では，歩行特徴や呼吸といったレーダ心拍信号以外の生体信号を用いた人物識別の関連研究について述べる．
+第4章では，レーダ心拍信号を用いた本研究のベースラインとなる従来法について述べる．
+第5章では，Center Lossとウェーブレット再構成を用いたセグメント単位の人物識別アルゴリズムを提案する．
+第6章では，提案法の実験結果・評価を行い，第7章で本研究の結論を述べる．
 
 
 \chapter{ドップラーレーダの原理}
@@ -122,9 +139,17 @@ $A_I, A_Q$はそれぞれ$I/Q$信号の振幅，$\theta$は初期位相シフト
 \includegraphics[width=\linewidth]{./fig/radar_figure_trim.pdf}
 \end{center}
 \caption{被験者に対しドップラーレーダで照射した様子}
+\label{fig:radar}
 \end{figure}
 
 \chapter{関連研究}
+本章では，接触型の心拍信号，非接触型のレーダやWi-Fiを用いて取得した歩行特徴や呼吸といった信号を基に人物識別を行った研究について述べる．（それぞれ2-3個出す）
+\section{ECGを基にした人物識別}
+\section{呼吸信号を基にした人物識別}
+\section{歩行特徴を基にした人物識別}
+
+
+Zhaoらは，FMCWレーダを用いて適用可能な範囲内の人間の点群を生成し，その点群を追跡し，それらのデータフレームをリカレントニューラルネットワークへ入力することで人物識別を行っている\cite{paper:human_track}．点群はDBScan(Density-based spatial clustering of applications with noise)\cite{paper:dbscan}でクラスタリングされ，カルマンフィルタ\cite{paper:kalman}を用いることで人物追跡の予測・修正を行い，Hungarianアルゴリズム\cite{paper:Hungarian}を用いることでトラックと人物の関連付けを行っている．
 
 \chapter{従来法}
 本章では，本研究と同様に心拍信号を用いて人物識別を行った研究について述べる．
@@ -164,7 +189,7 @@ Naive Bayes & 80.75\% \\
 
 \subsection{実験結果}
 実験では，クローズセット環境下とオープンセット環境下の2つの状態で評価が行われた．
-図\ref{fig:HeartSignature}に結果を示す．
+表\ref{table:HeartSignature}に結果を示す．
 
 \begin{table}[H]
 \caption{クローズ/オープンセットにおける精度}
@@ -177,6 +202,7 @@ Naive Bayes & 80.75\% \\
 オープンセット & 15/15 & 93.57\% \\
 \hline
 \end{tabular}
+\label{table:HeartSignature}
 \end{table}
 
 \section{心拍信号を基にした，転移学習とアンサンブル学習を用いたオープンセット環境下における人物識別\cite{paper:Xing}}
@@ -209,6 +235,14 @@ InceptionTimeの特徴として，画像認識で高い精度を残したIncepti
 Inceptionモジュールは，様々な大きさの畳み込み層とmaxプーリングの出力を結合させて
 また，ResNet\cite{paper:ResNet}に代表される残差接続を採用している点も大きな特徴の1つである．
 
+損失関数にはSoftmax LossとCenter Lossを採用しており，以下のように定式化される．
+\begin{equation}{L_{{\text{Softmax }}}} = \frac{1}{N}\sum\limits_{i = 1}^N 1 - \log \frac{{{e^{\left\| {{{\mathbf{w}}_{yi}}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _{yi}} + {{\mathbf{b}}_{yi}}}}}}{{\sum\limits_{j = 1}^C {{e^{\left\| {{{\mathbf{w}}_j}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _j} + {{\mathbf{b}}_j}}}} }}\tag{1}\end{equation}
+
+\begin{equation}{L_{{\text{Center }}}} = \frac{1}{2}\sum\limits_{i = 1}^N {{{\left\| {{\mathbf{x}}_i^j - {{\mathbf{c}}^j}} \right\|}_2}} ,(j = 1,2, \ldots ,C)\tag{2}\end{equation}
+
+\begin{equation}{L_{{\text{Total }}}} = {L_{{\text{Softmax }}}} + \alpha {L_{{\text{Center }}}}\end{equation}
+
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\linewidth]{./fig/InceptionTime.png}
@@ -226,8 +260,9 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 \end{figure}
 
 \chapter{実験評価}
+CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関するグラフ, Wavelet Reconstructionの有無
 \section{ノイズの少ないデータセットについて}
-エルランゲン大学病院で収集された30人の被験者に対するデータセット
+エルランゲン大学病院で収集された30人の被験者で構成されるデータセット
 \subsection{クローズセット環境}
 \subsubsection{実験諸元}
 \subsubsection{実験結果}
@@ -237,7 +272,7 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 
 
 \section{ノイズの多いデータセットについて}
-慶應大学病院で収集された12人の被験者に対するデータセット
+慶應大学病院で収集された12人の被験者で構成されるデータセット
 \subsection{クローズセット環境}
 \subsubsection{実験諸元}
 \subsubsection{実験結果}
@@ -273,15 +308,32 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 %   \newblock 文献名，
 %   \newblock 書誌情報，出版年．
 
-\bibitem{hoge09}
-  ほげ山太郎，ほげ山次郎：
-  \newblock ほげほげ理論のHCI分野への応用，
-  \newblock ほげほげ学会論文誌，Vol.31，No.3，pp.194-201，2009．
-
 \bibitem{hoge08}
   Taro Hogeyama, Jiro Hogeyama:
   \newblock The Theory of Hoge,
   \newblock {\it The Proceedings of The Hoge Society}, 2008.
+
+  \bibitem{paper:password}
+  L. O'Gorman, "Comparing passwords, tokens, and biometrics for user authentication," in Proceedings of the IEEE, vol. 91, no. 12, pp. 2021-2040, 2003.
+
+  \bibitem{paper:human_track}
+  Peijun Zhao, Chris Xiaoxuan Lu, Jianan Wang, Changhao Chen, Wei Wang, Niki Trigoni, Andrew Markham
+  \newblock Human tracking and identification through a millimeter wave radar
+  \newblock {\it Ad Hoc Networks}, Vol. 116, 2021
+
+  \bibitem{paper:dbscan}
+  M. Ester, H.-P. Kriegel, J. Sander, X. Xu
+  \newblock Density-based spatial clustering of applications with noise
+  \newblock {\it Int. Conf. Knowledge Discovery and Data Mining}, Vol. 240, 1996
+
+  \bibitem{paper:kalman}
+  R.E. Kalman
+  \newblock A new approach to linear filtering and prediction problems, 1960
+
+  \bibitem{paper:Hungarian}
+  H.W. Kuhn
+  \newblock The Hungarian method for the assignment problem
+  \newblock {\it Naval research logistics quarterly}, Vol. 2, No.1-2, pp.83-97, 1995.
 
   \bibitem{paper:HeartID}
   AAA

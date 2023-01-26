@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  25 JAN 2023 16:13
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  26 JAN 2023 13:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -308,90 +308,101 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 
  [5]
 第 1 章
+
+LaTeX Warning: Reference `paper:password' on page 1 undefined on input line 84.
+
+
 [1
 
-]
+] [2] [3]
 第 2 章
-
-LaTeX Warning: Reference `fig:radar' on page 2 undefined on input line 100.
-
 File: ./fig/radar_figure_trim.pdf Graphic file (type pdf)
 <./fig/radar_figure_trim.pdf>
-[2
-
-] [3]
-第 3 章
 [4
+
+] [5]
+第 3 章
+
+Overfull \hbox (21.76285pt too wide) in paragraph at lines 152--153
+\JY1/mc/m/n/12 ッ トワ ークへ入力することで人物識別を行 っ ている \OT1/cmr/m/n/
+12 [[]]\JY1/mc/m/n/12 ． 点群は \OT1/cmr/m/n/12 DBScan(Density-
+ []
+
+[6
 
 ]
 第 4 章
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 133.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 158.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 133.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 158.
 
-Overfull \hbox (4.49944pt too wide) in paragraph at lines 134--137
+Overfull \hbox (4.49944pt too wide) in paragraph at lines 159--162
 []\OT1/cmr/m/n/12 24 GHz \JY1/mc/m/n/12 ？ ド ッ プラ ーレ ーダを用いて取得した
 心拍信号に対し ， \OT1/cmr/m/n/12 STFT(Short
  []
 
-[5
+[7
 
-] [6]
-
-LaTeX Warning: Reference `fig:HeartSignature' on page 7 undefined on input line
- 167.
-
-[7] [8]
+] [8] [9] [10]
 第 5 章
-[9
+[11
 
 ]
+Overfull \hbox (2.00208pt too wide) in paragraph at lines 232--237
+\JY1/mc/m/n/12 っ て学習が行われる ． 今回は時系列デ ータの学習に適した \OT1/cm
+r/m/n/12 InceptionTime[[]]
+ []
+
+[12]
 File: ./fig/InceptionTime.png Graphic file (type bmp)
 <./fig/InceptionTime.png>
- [10]
 File: ./fig/proposed_method.pdf Graphic file (type pdf)
 <./fig/proposed_method.pdf>
- [11] [12]
+ [13] [14]
 第 6 章
-[13
-
-] [14]
-第 7 章
 [15
 
-] [16
+] [16]
+第 7 章
+[17
+
+] [18
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 284.
+(Font)              No change on input line 314.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 298.
+(Font)              No change on input line 322.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 303.
+(Font)              No change on input line 327.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 308.
- [17
+(Font)              No change on input line 336.
+ [19
 
-] [18]
+]
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 350.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 355.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 360.
+ [20] [21]
 付 録 A  
-[19
+[22
 
 ] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 3333 strings out of 480241
- 51956 string characters out of 5895801
+ 3343 strings out of 480241
+ 52082 string characters out of 5895801
  347351 words of memory out of 5000000
- 21584 multiletter control sequences out of 15000+600000
- 485558 words of font info for 94 fonts, out of 8000000 for 9000
+ 21591 multiletter control sequences out of 15000+600000
+ 486368 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,8n,62p,432b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,10n,62p,528b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (25 pages, 32820 bytes).
+Output written on main.dvi (28 pages, 42176 bytes).
