@@ -2,11 +2,12 @@
 \citation{paper:HeartID}
 \citation{paper:HeartSignature}
 \citation{paper:Xing}
+\citation{paper:password}
 \@writefile{toc}{\contentsline {chapter}{\numberline {第1章}序論}{1}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}背景}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}本文書の構成}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}本文書の構成}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {第2章}ドップラーレーダの原理}{4}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -16,90 +17,109 @@
 \newlabel{eq:q_signal}{{2.4}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces 被験者に対しドップラーレーダで照射した様子}}{5}{}\protected@file@percent }
 \newlabel{fig:radar}{{2.1}{5}}
-\citation{paper:human_track}
-\citation{paper:dbscan}
-\citation{paper:kalman}
-\citation{paper:Hungarian}
+\citation{paper:respi_svm}
+\citation{paper:dynamic1}
+\citation{paper:dynamic2}
 \@writefile{toc}{\contentsline {chapter}{\numberline {第3章}関連研究}{6}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}ECGを基にした人物識別}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}呼吸信号を基にした人物識別}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}歩行特徴を基にした人物識別}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}呼吸信号を基にした人物識別}{7}{}\protected@file@percent }
+\citation{paper:unsupervised}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces 使用された5つの特徴量}}{8}{}\protected@file@percent }
+\newlabel{table:respi}{{3.1}{8}}
+\citation{paper:human_track}
+\citation{paper:dbscan}
+\citation{paper:kalman}
+\citation{paper:Hungarian}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}歩行特徴を基にした人物識別}{9}{}\protected@file@percent }
 \citation{paper:HeartID}
 \citation{paper:HeartID}
-\@writefile{toc}{\contentsline {chapter}{\numberline {第4章}従来法}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {第4章}従来法}{10}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}心拍信号のスペクトログラムを用いた深層学習による人物識別\cite  {paper:HeartID}}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}手法}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}心拍信号のスペクトログラムを用いた深層学習による人物識別\cite  {paper:HeartID}}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}手法}{10}{}\protected@file@percent }
 \citation{paper:HeartSignature}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}実験結果}{8}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces 各手法における4人の被験者のクローズセット環境下における精度の比較}}{8}{}\protected@file@percent }
-\newlabel{table:HeartID}{{4.1}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}心拍信号を基にした，双極子深層学習モデルによるオープンセット環境下における人物識別\cite  {paper:HeartSignature}}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}手法}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}実験結果}{11}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces 各手法における4人の被験者のクローズセット環境下における精度の比較}}{11}{}\protected@file@percent }
+\newlabel{table:HeartID}{{4.1}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}心拍信号を基にした，双極子深層学習モデルによるオープンセット環境下における人物識別\cite  {paper:HeartSignature}}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}手法}{11}{}\protected@file@percent }
 \citation{paper:Xing}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}実験結果}{9}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces クローズ/オープンセットにおける精度}}{9}{}\protected@file@percent }
-\newlabel{table:HeartSignature}{{4.2}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}心拍信号を基にした，転移学習とアンサンブル学習を用いたオープンセット環境下における人物識別\cite  {paper:Xing}}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}実験結果}{12}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces クローズ/オープンセットにおける精度}}{12}{}\protected@file@percent }
+\newlabel{table:HeartSignature}{{4.2}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}心拍信号を基にした，転移学習とアンサンブル学習を用いたオープンセット環境下における人物識別\cite  {paper:Xing}}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {第5章}提案法}{14}{}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}従来法の問題点と提案法}{14}{}\protected@file@percent }
 \citation{paper:ellipse1}
 \citation{paper:ellipse2}
-\@writefile{toc}{\contentsline {chapter}{\numberline {第5章}提案法}{11}{}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}従来法の問題点と提案法}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}提案法のアルゴリズム}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}提案法のアルゴリズム}{15}{}\protected@file@percent }
 \citation{paper:InceptionTime}
 \citation{paper:Inception}
 \citation{paper:ResNet}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces InceptionTimeの構造概要}}{13}{}\protected@file@percent }
-\newlabel{fig:InceptionTime}{{5.1}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces 提案法のアルゴリズム}}{14}{}\protected@file@percent }
-\newlabel{fig:proposed_method}{{5.2}{14}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {第6章}実験評価}{15}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces ウェーブレット再構成適用前と適用後の波形の比較}}{16}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces InceptionTimeの構造概要}}{18}{}\protected@file@percent }
+\newlabel{fig:InceptionTime}{{5.2}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces 提案法のアルゴリズム}}{19}{}\protected@file@percent }
+\newlabel{fig:proposed_method}{{5.3}{19}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第6章}実験評価}{20}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}ノイズの少ないデータセットについて}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}クローズセット環境}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}オープンセット環境}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}ノイズの多いデータセットについて}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}クローズセット環境}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}オープンセット環境}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {第7章}結論}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}ノイズの少ないデータセットについて}{20}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces エルランゲン大学心拍信号の諸元}}{20}{}\protected@file@percent }
+\newlabel{table:30-dataset}{{6.1}{20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}クローズセット環境}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{21}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces title}}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}オープンセット環境}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{22}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces title}}{23}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}ノイズの多いデータセットについて}{23}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces 慶應大学心拍信号の諸元}}{24}{}\protected@file@percent }
+\newlabel{table:keio_hospital}{{6.2}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}クローズセット環境}{24}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{24}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{24}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces title}}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}オープンセット環境}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(1)}実験諸元}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {(2)}実験結果}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces title}}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {第7章}結論}{27}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}参考文献について}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{謝辞}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{参考文献}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}参考文献について}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{謝辞}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{参考文献}{28}{}\protected@file@percent }
 \bibcite{hoge08}{1}
 \bibcite{paper:password}{2}
-\bibcite{paper:human_track}{3}
-\bibcite{paper:dbscan}{4}
-\bibcite{paper:kalman}{5}
-\bibcite{paper:Hungarian}{6}
-\bibcite{paper:HeartID}{7}
-\bibcite{paper:HeartSignature}{8}
-\bibcite{paper:Xing}{9}
-\bibcite{paper:ellipse1}{10}
-\bibcite{paper:ellipse2}{11}
-\bibcite{paper:InceptionTime}{12}
-\bibcite{paper:Inception}{13}
-\bibcite{paper:ResNet}{14}
-\@writefile{toc}{\contentsline {chapter}{\numberline {付 録A }付録の例}{22}{}\protected@file@percent }
+\bibcite{paper:respi_svm}{3}
+\bibcite{paper:dynamic1}{4}
+\bibcite{paper:dynamic2}{5}
+\bibcite{paper:unsupervised}{6}
+\bibcite{paper:human_track}{7}
+\bibcite{paper:dbscan}{8}
+\bibcite{paper:kalman}{9}
+\bibcite{paper:Hungarian}{10}
+\bibcite{paper:HeartID}{11}
+\bibcite{paper:HeartSignature}{12}
+\bibcite{paper:Xing}{13}
+\bibcite{paper:ellipse1}{14}
+\bibcite{paper:ellipse2}{15}
+\bibcite{paper:InceptionTime}{16}
+\bibcite{paper:Inception}{17}
+\bibcite{paper:ResNet}{18}
+\@writefile{toc}{\contentsline {chapter}{\numberline {付 録A }付録の例}{33}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}付録1}{22}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1.1}あの}{22}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}なにか}{22}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2.1}foo}{22}{}\protected@file@percent }
-\gdef \@abspage@last{28}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}付録1}{33}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1.1}あの}{33}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}なにか}{33}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2.1}foo}{33}{}\protected@file@percent }
+\gdef \@abspage@last{39}

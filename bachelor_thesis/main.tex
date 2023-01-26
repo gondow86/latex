@@ -33,6 +33,7 @@
 \usepackage{amsmath, amssymb}
 \usepackage{mathtools}
 \usepackage{here}
+% \usepackage{color}
 
 % \bindermode	% バインダ用余白設定
 
@@ -81,13 +82,14 @@
 \section{背景}
 人物識別は多様なアプリケーションで利用されている．
 従来の識別は，指紋認証や顔認証といった対象となる人物の意図的な接触や協力が必要である．
-また，パスワードを記憶しておく必要があったり，トークンを保持しておく必要がある\ref{paper:password}．
+また，パスワードを記憶しておく必要があったり，トークンを保持しておく必要がある\cite{paper:password}．
 特にカメラベースの識別は数多く考案されているものの，いずれもプライバシー保護の観点で問題があると言える．
 そこで近年，外的環境要因に強く，コストが低い，プライバシーの保護という観点から非接触で行うレーダベースの人物識別が注目を集めている．外的環境要因とは具体的に言えば，使用環境の照度，雪や霧といった悪天候，障害物などである．
 レーダを用いた識別は，見守りシステムや侵入者検知，継続的な認証など様々な場面における応用が期待されている．
 継続的な認証とは，
 レーダーベースの識別では，心拍や呼吸といった生体信号や，歩行特徴といった信号を基に識別が行われるが，それらの信号には人物に固有の特徴が含まれるため，なりすましがされにくいというメリットもある．一方で体動によるノイズに弱く，それらをどのように除去するかは課題の1つとなっている．
 
+% \textcolor{red}{
 レーダの種類にはCW(Continuous Wave)レーダ（ドップラーレーダ）やFMCW(Frequency Modulated Continuous Wave)レーダが
 近年，ドップラーレーダは様々な研究において，人間の生体信号を非接触に検出するハードウェアとして注目を集めている．
 ・心拍や呼吸によって引き起こされる胸壁変位を検出可能である．
@@ -96,10 +98,16 @@
 ・ウェアラブルセンサーは対象人物の協力が必要(unsupervised)
 ・Wi-Fiはチャネルが混雑しており，干渉や環境ノイズの影響を強く受ける(unsupervised)
 ・ECG(Electrocardiogram)を用いるのは，高い識別精度が得られるが，測定機器を持ち運ぶ必要があり，それを対象人物に装着する必要があるため，あまり実用的ではない．(Xing)
+・非接触の継続的な認証システムは、ログインセッションを通してシステムのセキュリティを維持する上で重要な役割を果たすことができる(呼吸SVM)
 
 心拍や呼吸といった生体信号を用いた人物識別研究の多くは，テスト時に未知の人物が含まれないクローズセット環境下における評価をしており，テスト時に未知の人物が含まれるオープンセット環境下での評価を行っていない．
 そこで本研究では，オープンセット環境下におけるレーダ心拍信号を用いた人物識別を行う．ここではオープンセット環境を，既知の人物のクラス数を$N$として，未知の人物であるというクラスを1つ加えた$N+1$個のクラスでの識別と定義する．
 
+% \textcolor{red}{Opennessの定義}
+
+\begin{equation}\label{}
+  openness = 1 - \sqrt{\frac{C_{train}}{C_{test}}}
+\end{equation}
 
 \section{本文書の構成}
 本論文は次のように構成される．
@@ -145,9 +153,35 @@ $A_I, A_Q$はそれぞれ$I/Q$信号の振幅，$\theta$は初期位相シフト
 \chapter{関連研究}
 本章では，接触型の心拍信号，非接触型のレーダやWi-Fiを用いて取得した歩行特徴や呼吸といった信号を基に人物識別を行った研究について述べる．（それぞれ2-3個出す）
 \section{ECGを基にした人物識別}
-\section{呼吸信号を基にした人物識別}
-\section{歩行特徴を基にした人物識別}
+ECGを用いて人物識別を行った最新の研究として，LeeらはECG信号を用いた1次元LSTM(Long Short Term Memory)と2次元CNN(Convolutional Neural Network)のアンサンブルアプローチを提案した．
+LPF(Low Pass Filter)で前処理されたECG信号は，Rピークごとに周期でセグメントされ，片方は波形のままLSTMへ，もう片方は，STFT(Short Time Fourier Transform), CWT(Continuous Wavelet Transform)，FSST(Fourier Synchrosqueezed Transform), WSST(Wavelet Synchrosqueezed Transform)を用いて，時間-周波数領域へと変換された画像がCNNに入力される．CNNには事前学習されたGoogleNet, VGG-19, ResNet-101が用いられた．
 
+
+\section{呼吸信号を基にした人物識別}
+Islamらは，ドップラーレーダで取得した呼吸による，SVM(Support Vector Machine)による認証システムとして人物識別を行った\cite{paper:respi_svm}．彼らはSVMを動径基底関数カーネル分類と統合することで，非線形な問題の決定境界を学習可能とした．入力を被験者の呼吸パターンのFFT(Fast Fourier Transform)としており，既存の吸気と呼気のパターンに基づいて人物識別をする動的セグメンテーションの手法\cite{paper:dynamic1}\cite{paper:dynamic2}の精度を凌駕した．
+さらに，Islamらは上記の研究と同様にSVMを用いるが，異なる特徴量を採用した研究を発表しており，その研究では5種の特徴量が用いられている．特徴量を表\ref{table:respi}
+
+\begin{table}[H]
+\caption{使用された5つの特徴量}
+\centering
+\begin{tabular}{|p{3cm}|p{6cm}|}
+\hline
+特徴量 & 算出方法 \\
+\hline
+呼吸数/心拍数 & 測定された呼吸データに対しFFTを行い呼吸数を，呼吸信号に対し0.8-2Hzの範囲でBPF(Band Pass Filter)を適用し，FFTを行うことで心拍数を抽出 \\ \hline
+呼吸ピークの平均距離/標準偏差 & ピーク探索処理により呼吸データの最大/最小ピークとその時間指標を求め，ピークの平均距離と標準偏差を取得 \\ \hline
+呼吸深度 & 最小ピークから最大ピークまでの総変位量より算出 \\ \hline
+スペクトルエントロピー(信号の呼吸エネルギー) & 呼吸データの信号振幅の2乗を取り，サンプル数を正規化することで算出 \\ \hline
+動的セグメンテーション & 1分間の呼吸サイクルを30\%~70\%の振幅でセグメント化し，吸気部分と呼気部分の平均面積比(=次の呼吸の開始速度)を算出 \\
+\hline
+\end{tabular}
+\label{table:respi}
+\end{table}
+
+% \textcolor{red}{元気があればWiFiとかも書く}
+
+\section{歩行特徴を基にした人物識別}
+Yangらは，歩行特徴データに対してSTFT(Short Time Fourier Transform)を行って得たスペクトログラムを用いて人物識別を行った\cite{paper:unsupervised}．この研究は，コートを着ている，カバンを所持している，ゆっくり歩くなどの通常の歩行とは異なる歩行についても考慮している点がそれ以前の研究とは異なる．モデルの学習段階で教師なしドメイン適応を行うことで，ソースドメインである通常歩行をターゲットドメインに近づけるアプローチを取っている．
 
 Zhaoらは，FMCWレーダを用いて適用可能な範囲内の人間の点群を生成し，その点群を追跡し，それらのデータフレームをリカレントニューラルネットワークへ入力することで人物識別を行っている\cite{paper:human_track}．点群はDBScan(Density-based spatial clustering of applications with noise)\cite{paper:dbscan}でクラスタリングされ，カルマンフィルタ\cite{paper:kalman}を用いることで人物追跡の予測・修正を行い，Hungarianアルゴリズム\cite{paper:Hungarian}を用いることでトラックと人物の関連付けを行っている．
 
@@ -209,6 +243,18 @@ Naive Bayes & 80.75\% \\
 
 \chapter{提案法}
 \section{従来法の問題点と提案法}
+% \textcolor{red}{STFTを用いた時間-周波数画像(ヒートマップ)を入力としたCNNによる分類
+→ 特徴量がSTFTの際に画像変換で失われてる
+DDLMを用いた手法．Distance-basedな損失関数を使用．Decision makingも特殊（正？極から閾値よりも離れているか，負？極に閾値よりも近いかで当該IDかどうか判断）
+未知の被験者を既知の被験者と判断してしまっている（混同行列）．複雑なアーキテクチャにもかかわらず，訓練されたモデルがうまく出力をばらけさせられていない
+→ 損失関数と分類器を工夫できているが，Open setの評価ではまだ精度が劣化してしまっており課題がある．
+CNNを2つ用いてOpenMaxとSoftmaxでアンサンブル．ECG datasetによる転移学習も活用している．
+→ 2つのモデルを訓練する必要がある．損失関数が単純．
+損失関数が~~単純~~(DDLMは複雑)で，特徴量のマッピングがばらけていないことが問題と考えられる
+全てに共通すること
+- Open-setでの精度がまだまだ低い
+→ モデルが出力する特徴量のマッピングがばらけていないことが原因と考える．unknownとknownの距離が近い．
+→ 損失関数にSoftmax loss + Center lossを用いることでクラス内分散を最小化，クラス間分散を最大化する
 
 \section{提案法のアルゴリズム}
 提案法のアルゴリズムを図\ref{fig:proposed_method}に示す．
@@ -222,10 +268,19 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 
 \begin{equation}
 	\Delta x = \frac{\Delta \sigma}{2 \pi} \cdot \frac{\lambda}{2}
-	\end{equation}
+\end{equation}
 
-本稿では，ノイズの少ないデータセットとノイズの多いデータセットの2つを使用するが，後者の場合にはこのあとウェーブレット再構成を行う．
-胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切な閾値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．今回はレベルを8，マザーウェーブレットをDaubechies8とした．閾値処理では，最も高周波な成分を0として取り除いた．
+そうして得られた胸壁変位波形の例を図\ref{fig:distance1}に示す．
+
+本稿では，ノイズの少ないデータセットとノイズの多いデータセットの2つを使用するが，後者の場合には次に説明をするウェーブレット再構成を行う．
+後者のデータセット中の胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切な閾値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．今回はレベルを8，マザーウェーブレットをDaubechies8とした．閾値処理では，最も高周波な成分を0として取り除いた．図\ref{fig:wave}に被験者番号1の胸壁変位波形に対し，ウェーブレット再構成を適用する前後の波形の例を示す．横軸はサンプリングされたポイントの数，縦軸は正規化された後の振幅をそれぞれ示している．ウェーブレット再構成を適用した後の波形は，高周波のノイズが取り除かれていることが確認できる．
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\linewidth]{./fig/comparison_raw_wavelet_ID01.png}
+\end{center}
+\caption{ウェーブレット再構成適用前と適用後の波形の比較}
+\end{figure}
 
 所望の信号を得られたら，次にセグメンテーションを行う．詳細な諸元については第6章で述べるが，セグメントのウィンドウ長は5秒，隣り合うセグメントとのオーバーラップは1.5秒とした．
 
@@ -234,6 +289,7 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 InceptionTimeの特徴として，画像認識で高い精度を残したInceptionモジュール\cite{paper:Inception}が6つ積み重ねられ，時系列データ用に特化させたことが挙げられる．
 Inceptionモジュールは，様々な大きさの畳み込み層とmaxプーリングの出力を結合させて
 また，ResNet\cite{paper:ResNet}に代表される残差接続を採用している点も大きな特徴の1つである．
+このような構造を持つため，InceptionTimeは時系列データの特徴を最大限に抽出可能である．
 
 損失関数にはSoftmax LossとCenter Lossを採用しており，以下のように定式化される．
 \begin{equation}{L_{{\text{Softmax }}}} = \frac{1}{N}\sum\limits_{i = 1}^N 1 - \log \frac{{{e^{\left\| {{{\mathbf{w}}_{yi}}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _{yi}} + {{\mathbf{b}}_{yi}}}}}}{{\sum\limits_{j = 1}^C {{e^{\left\| {{{\mathbf{w}}_j}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _j} + {{\mathbf{b}}_j}}}} }}\tag{1}\end{equation}
@@ -241,6 +297,8 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 \begin{equation}{L_{{\text{Center }}}} = \frac{1}{2}\sum\limits_{i = 1}^N {{{\left\| {{\mathbf{x}}_i^j - {{\mathbf{c}}^j}} \right\|}_2}} ,(j = 1,2, \ldots ,C)\tag{2}\end{equation}
 
 \begin{equation}{L_{{\text{Total }}}} = {L_{{\text{Softmax }}}} + \alpha {L_{{\text{Center }}}}\end{equation}
+
+1次元CNNの最終層にはSoftmax層があるが，Softmax層は既知の$N$クラスにしかセグメントを分類することはできない．そこでオープンセット環境下では，Softmax-Thresholdという手法を採用し，これは，Softmaxの出力がある閾値以下であった場合にはその出力を未知のクラスに分類されたものとする方法である．
 
 
 \begin{figure}[H]
@@ -262,24 +320,89 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 \chapter{実験評価}
 CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関するグラフ, Wavelet Reconstructionの有無
 \section{ノイズの少ないデータセットについて}
-エルランゲン大学病院で収集された30人の被験者で構成されるデータセット
+エルランゲン大学病院で収集された30人の被験者で構成されるデータセットを使用した．データセットの内容は表\ref{table:30-dataset}のようになる．
+
+\begin{table}[H]
+\caption{エルランゲン大学心拍信号の諸元}
+\centering
+\begin{tabular}{cc}
+\hline
+被験者数 & 3 \\
+エポック数 & 4 \\
+学習率 & 79 GHz \\
+$\alpha$ & 3.4391 GHz \\
+サンプリングレート & 250 Hz \\
+\hline
+\end{tabular}
+\label{table:30-dataset}
+\end{table}
+
 \subsection{クローズセット環境}
 \subsubsection{実験諸元}
 \subsubsection{実験結果}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\linewidth]{./fig/clean_dataset/cross_val_Fold0_close.png}
+\end{center}
+\caption{title}
+\end{figure}
+
 \subsection{オープンセット環境}
 \subsubsection{実験諸元}
 \subsubsection{実験結果}
+表\ref{table:center_loss}から，Center Lossが一般的に分類タスクに用いられるCross Entropy Lossと比較して，精度が向上していることが分かる．
+
+Opennessを変化させていくと，図\ref{fig:threshold}より、未知のクラスと判断するためのしきい値を変化させていった場合に、0.7?で精度が最大となりその後劣化していく事がわかる。これは、最大化するまでは未知のクラスを既知のクラスと間違い、その後は既知のクラスを未知のクラスと間違えているためである。既知のクラスの学習がうまくいっているほど、しきい値が高くなるにつれて
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\linewidth]{./fig/clean_dataset/cross_val_Fold0_threshold0.8_15_15.png}
+\end{center}
+\caption{title}
+\end{figure}
 
 
 \section{ノイズの多いデータセットについて}
-慶應大学病院で収集された12人の被験者で構成されるデータセット
+慶應大学病院で収集された12人の被験者で構成されるデータセットを使用した．データセットの内容は表\ref{table:keio_hospital}
+
+\begin{table}[H]
+  \caption{慶應大学心拍信号の諸元}
+  \centering
+  \begin{tabular}{cc}
+  \hline
+  被験者数 & 12 \\
+  エポック数 & 4 \\
+  学習率 & 79 GHz \\
+  $\alpha$ & 3.4391 GHz \\
+  サンプリングレート & 250 Hz \\
+  \hline
+  \end{tabular}
+  \label{table:keio_hospital}
+  \end{table}
+
 \subsection{クローズセット環境}
 \subsubsection{実験諸元}
 \subsubsection{実験結果}
+また、表\ref{table:wavelet}から，よりノイズが多く含まれる慶應病院のデータセットについて，ウェーブレット再構成を行った方がウェーブレット再構成を行わない場合，一般的なBPFの処理のみを行う場合よりも精度が大きく改善していることが分かる.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\linewidth]{./fig/noisy_dataset/cross_val_Fold0_close.png}
+\end{center}
+\caption{title}
+\end{figure}
+
 \subsection{オープンセット環境}
 \subsubsection{実験諸元}
 \subsubsection{実験結果}
-
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=\linewidth]{./fig/noisy_dataset/cross_val_Fold0_threshold0.7_6_6.png}
+  \end{center}
+\caption{title}
+\end{figure}
+  
 
 \chapter{結論}
 
@@ -287,7 +410,7 @@ CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関する
 このテンプレ中では{\tt thebibliography}を使用しているが，BibTexのほうが使いやすいと思う場合は変更すること．
 引用フォーマットに関しては，IEEEのフォーマット{\tt IEEETran}に筆者は合わせた．
 
-% 謝辞
+% 謝辞関連研究
 \begin{acknowledgment}
 
 本研究を進めるにあたり，始終適切な御指導と御助言を賜りました慶應義塾大学理工学部情報工学科の大槻知明教授に深く感謝いたします．
@@ -315,6 +438,25 @@ CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関する
 
   \bibitem{paper:password}
   L. O'Gorman, "Comparing passwords, tokens, and biometrics for user authentication," in Proceedings of the IEEE, vol. 91, no. 12, pp. 2021-2040, 2003.
+  
+  \bibitem{paper:respi_svm}
+  S. M. M. Islam, A. Rahman, N. Prasad, O. Boric-Lubecke and V. M. Lubecke, "Identity Authentication System using a Support Vector Machine (SVM) on Radar Respiration Measurements," 2019 93rd ARFTG Microwave Measurement Conference (ARFTG), Boston, MA, USA, 2019, pp. 1-5
+
+  \bibitem{paper:dynamic1}
+  Feng Lin, Chen Song, Yan Zhuang, Wenyao Xu, Changzhi Li, and Kui Ren
+  \newblock Cardiac Scan: A Non-contact and Continuous Heart-based User Authentication System. 
+  \newblock {\it In Proceedings of the 23rd Annual International Conference on Mobile Computing and Networking (MobiCom '17). Association for Computing Machinery} ,pp. 315–328, 2017
+
+  \bibitem{paper:dynamic2}
+  A. Rahman, V. M. Lubecke, O. Boric–Lubecke, J. H. Prins and T. Sakamoto
+  \newblock Doppler Radar Techniques for Accurate Respiration Characterization and Subject Identification
+  \newblock {\it IEEE Journal on Emerging and Selected Topics in Circuits and Systems}, vol. 8, no. 2, pp. 350-359, 2018
+
+
+  \bibitem{paper:unsupervised}
+  Y. Yang, X. Yang, T. Sakamoto, F. Fioranelli, B. Li and Y. Lang
+  \newblock Unsupervised Domain Adaptation for Disguised-Gait-Based Person Identification on Micro-Doppler Signatures
+  \newblock {\it IEEE Transactions on Circuits and Systems for Video Technology}, vol. 32, no. 9, pp. 6448-6460, 2022
 
   \bibitem{paper:human_track}
   Peijun Zhao, Chris Xiaoxuan Lu, Jianan Wang, Changhao Chen, Wei Wang, Niki Trigoni, Andrew Markham
