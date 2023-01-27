@@ -49,7 +49,7 @@
 \jsubmit	{令和 5 年 2 月 3 日}
 \jhyear		{5}							% 平成○年度
 \jsyear		{2023}							% 西暦○年度
-\jkeyword	{キーワード1，キーワード2，キーワード3}		% 論文のキーワード
+\jkeyword	{オープンセット，Center Loss，ウェーブレット再構成}		% 論文のキーワード
 
 
 \begin{document}
@@ -98,10 +98,13 @@
 そこで本研究では，オープンセット環境下におけるレーダ心拍信号を用いた人物識別を行う．ここではオープンセット環境を，既知の人物のクラス数を$N$として，未知の人物であるというクラスを1つ加えた$N+1$個のクラスでの識別と定義する．
 
 % \textcolor{red}{Opennessの定義}
-またここで，オープンネス指数を定義する．$C_{train}$と$C_{test}$をそれぞれトレーニングセットとテストセットにおける被験者のクラス数である．オープンネス指数は，テスト時にモデルがどの程度の未知のクラスに遭遇するのかを定量化するために使用され，一般的にはこの指数が高いほど，分類問題は困難になる\cite{paper:HeartSignature}
+またここで，Openness指数を定義する．$C_{train}$と$C_{test}$をそれぞれトレーニングセットとテストセットにおける被験者のクラス数である．Openness指数は，テスト時にモデルがどの程度の未知のクラスに遭遇するのかを定量化するために使用され，一般的にはこの指数が高いほど，分類問題は困難になる\cite{paper:HeartSignature}
 \begin{equation}\label{}
   openness = 1 - \sqrt{\frac{C_{train}}{C_{test}}}
 \end{equation}
+
+\section{目的}
+本論文では，Center Lossとウェーブレット再構成を用いた提案アルゴリズムの人物識別における有用性を示すことを目指す．
 
 \section{本文書の構成}
 本論文は次のように構成される．
@@ -563,15 +566,36 @@ $\alpha$ (Center Loss) & 0.1 \\
 \end{table}
 
 \section{Threshold, Opennessによる精度の変化}
+本節では2つのデータセットでOpennessによって精度がどう変化していくか，またSoftmax-Thresholdのしきい値によって精度がどう変化していくか述べる．図\ref{fig:openness}と図\ref{fig:threshold}に精度のしきい値による変化とOpennessによる変化のグラフを示した．
+
+Opennessを変化させていくと，図\ref{fig:openness}より，エルランゲン大学のデータセットは精度がほとんど100\%に上ずっていて変化が見られないが，慶應病院のデータセットではOpennessが上がっていくことで精度が劣化していき，問題が難しくなっていることが読み取れる．
+
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.8\linewidth]{./fig/openness_comparison.png}
+  \end{center}
+  \caption{Opennessによる精度の変化}
+  \label{fig:openness}
+  \end{figure}
+
+Thresholdを変化させていくと，図\ref{fig:threshold}より，エルランゲン大学のグラフは，しきい値を変化させていった場合に，0.7(0.8)で精度が最大となりその後劣化している事がわかる．これは，既知のクラスの学習がうまくいっているほど，既知クラスが入力となった時のSoftmaxの出力値の分布が1付近の値に偏るためである．精度が最大化するまでは未知のクラスを既知のクラスと誤り、その後は既知のクラスを未知のクラスと誤っているのである．慶應病院のデータセットはSoftmaxの出力値の分布の偏りがエルランゲン大学のデータセットを使用した場合と比較してあまりないために，そのような傾向は見られず，精度が変化しないと考えられる．
 
 
-Opennessを変化させていくと，図\ref{fig:threshold}より、未知のクラスと判断するためのしきい値を変化させていった場合に、0.7?で精度が最大となりその後劣化していく事がわかる。これは、最大化するまでは未知のクラスを既知のクラスと間違い、その後は既知のクラスを未知のクラスと間違えているためである。既知のクラスの学習がうまくいっているほど、しきい値が高くなるにつれて
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\linewidth]{./fig/Threshold_comparison.png}
+\end{center}
+\caption{Thresholdによる精度の変化}
+\label{fig:threshold}
+\end{figure}
+
 
 \chapter{結論}
+本研究では，従来法でオープンセット環境下における精度の劣化を克服するため，Center Lossを採用した．そして提案手法は従来法の精度をオープンセットで4.7\%, クローズセットでも0.8\%上回った．
+また，ウェーブレット再構成で提案手法をさらに拡張し，よりノイズが多いデータについても対応ができるようなアルゴリズムであると示された．
 
-\section{参考文献について}
-このテンプレ中では{\tt thebibliography}を使用しているが，BibTexのほうが使いやすいと思う場合は変更すること．
-引用フォーマットに関しては，IEEEのフォーマット{\tt IEEETran}に筆者は合わせた．
+今後の課題として，Softmax-Thresholdのしきい値を静的に決定することは実用上難しいと考えられるため，動的に識別の基準を決めて，未知のクラスを出力できるようにすることが挙げられる．また，ノイズが大きい慶應病院のデータセットについてはまだ精度改善の余地が残されているため，ウェーブレット係数のしきい値処理の工夫等のさらなる前処理の探求や新たな学習のアーキテクチャの考案が必要である．
+
 
 % 謝辞関連研究
 \begin{acknowledgment}
@@ -594,7 +618,9 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
 %   \newblock 文献名，
 %   \newblock 書誌情報，出版年．
   \bibitem{paper:password}
-  L. O'Gorman, "Comparing passwords, tokens, and biometrics for user authentication," in Proceedings of the IEEE, vol. 91, no. 12, pp. 2021-2040, 2003.
+  L. O'Gorman
+  \newblock Comparing passwords, tokens, and biometrics for user authentication
+  \newblock {\it Proceedings of the IEEE}, Vol. 91, No. 12, pp. 2021-2040, 2003.
 
   \bibitem{paper:Wireless_survey}
   J. Liu, H. Liu, Y. Chen, Y. Wang and C. Wang
@@ -602,7 +628,9 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
   \newblock IEEE Communications Surveys \& Tutorials, vol. 22, no. 3, pp. 1629-1645, 2020,
 
   \bibitem{paper:respi_svm}
-  S. M. M. Islam, A. Rahman, N. Prasad, O. Boric-Lubecke and V. M. Lubecke, "Identity Authentication System using a Support Vector Machine (SVM) on Radar Respiration Measurements," 2019 93rd ARFTG Microwave Measurement Conference (ARFTG), Boston, MA, USA, 2019, pp. 1-5
+  S. M. M. Islam, A. Rahman, N. Prasad, O. Boric-Lubecke and V. M. Lubecke
+  \newblock Identity Authentication System using a Support Vector Machine (SVM) on Radar Respiration Measurements
+  \newblock {\it 2019 93rd ARFTG Microwave Measurement Conference (ARFTG)}, pp. 1-5, 2019
 
   \bibitem{paper:respiratory}
   S. M. M. Islam, A. Sylvester, G. Orpilla and V. M. Lubecke
@@ -665,13 +693,18 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
   \newblock {\it Naval research logistics quarterly}, Vol. 2, No.1-2, pp.83-97, 1995.
 
   \bibitem{paper:HeartID}
-  AAA
+  P. Cao, W. Xia, and Y. Li
+  \newblock Heart ID: Human Identification Based on Radar Micro-Doppler Signatures of the Heart Using Deep Learning
+  \newblock {\it Remote Sensing}, Vol. 11, No. 10, p. 1220, 2019
 
 \bibitem{paper:HeartSignature}
-  Yang Bajiu, 
+Baiju Yan, Hao Zhang, Yicheng Yao, Changyu Liu, Pu Jian, Peng Wang, Lidong Du, Xianxiang Chen, Zhen Fang, Yirong Wu
+\newblock Heart signatures: Open-set person identification based on cardiac radar signals
+\newblock {\it Biomedical Signal Processing and Control}, Vol. 72, 2022
 
 \bibitem{paper:Xing}
-  Zelin Xing, 
+  Zelin Xing, Mondher Bouazizi, Tomoaki Ohtsuki
+  \newblock Deep Learning-based Open-set Person Identification using Radar Extracted Cardiac Signals, 2022
 	
 \bibitem{paper:ellipse1}
   Aditya Singh, Xiaomeng Gao, Ehsan Yavari, Mari Zakrzewski, Xi Hang Cao, Victor M. Lubecke, Olga Boric-Lubecke
@@ -704,10 +737,14 @@ C. Haritha, M. Ganesan and E. P. Sumesh
   \newblock {\it Data Mining and Knowledge Discovery}, Vol.34, No.6, pp.1936-1962, 2020.
 
 \bibitem{paper:Inception}
-Szegedy, Christian, et al. "Inception-v4, inception-resnet and the impact of residual connections on learning." Thirty-first AAAI conference on artificial intelligence. 2017.
+zegedy C., Ioffe S., Vanhoucke V., Alemi, A.
+\newblock Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning
+\newblock {\it Proceedings of the AAAI Conference on Artificial Intelligence}, Vol. 31, No. 1, 2017
 
 \bibitem{paper:ResNet}
-He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+\newblock Deep residual learning for image recognition
+\newblock {\it Proceedings of the IEEE conference on computer vision and pattern recognition}, 2016
 
 \bibitem{paper:centerloss}
 Wen, Y., Zhang, K., Li, Z., Qiao, Y.. A Discriminative Feature Learning Approach for Deep Face Recognition. In: Leibe, B., Matas, J., Sebe, N., Welling, M. (eds) Computer Vision – ECCV 2016. ECCV 2016. Lecture Notes in Computer Science(), vol 9911. {\it Springer, Cham}, 2016
@@ -719,27 +756,19 @@ Sven Schellenberger, Kilin Shi, Tobias Steigleder, Anke Malessa, Fabian Michler,
 
 \end{bib}
 
-\appendix
-% 付録
-\chapter{付録の例}
+% \appendix
+% % 付録
+% \chapter{付録の例}
 
-付録を無理矢理出力させるため，てきとうなことを書く
+% 付録を無理矢理出力させるため，てきとうなことを書く
 
-\section{付録1}
+% \section{付録1}
 
-コマンドは本文と一緒．
+% コマンドは本文と一緒．
 
-\subsection{あの}
+% \subsection{あの}
 
-あのイーハトーヴォのすきとおった風，夏でも底に冷たさをもつ青いそら，うつくしい森で飾られたモリーオ市，郊外のぎらぎらひかる草の波．
-
-\section{なにか}
-
-あのイーハトーヴォのすきとおった風，夏でも底に冷たさをもつ青いそら，うつくしい森で飾られたモリーオ市，郊外のぎらぎらひかる草の波．
-
-\subsection{foo}
-
-あのイーハトーヴォのすきとおった風，夏でも底に冷たさをもつ青いそら，うつくしい森で飾られたモリーオ市，郊外のぎらぎらひかる草の波．
+% あのイーハトーヴォのすきとおった風，夏でも底に冷たさをもつ青いそら，うつくしい森で飾られたモリーオ市，郊外のぎらぎらひかる草の波．
 
 \end{document}
 

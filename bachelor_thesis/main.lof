@@ -14,5 +14,6 @@
 \contentsline {figure}{\numberline {6.3}{\ignorespaces 30人の被験者の分類，ノイズの少ないデータセットでオープンセット環境の場合. 既知の人物は15名，未知の人物は15名，しきい値0.7}}{27}{}%
 \contentsline {figure}{\numberline {6.4}{\ignorespaces 12人の被験者の分類，ノイズの多いデータセットでクローズセット環境の場合}}{31}{}%
 \contentsline {figure}{\numberline {6.5}{\ignorespaces 12人の被験者の分類，ノイズの多いデータセットでオープンセット環境の場合. 既知の人物は6名，未知の人物は6名，しきい値0.7}}{32}{}%
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Opennessによる精度の変化}}{34}{}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Thresholdによる精度の変化}}{35}{}%
 \addvspace {10\p@ }
