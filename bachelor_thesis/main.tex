@@ -81,24 +81,20 @@
 
 \section{背景}
 人物識別は多様なアプリケーションで利用されている．
-従来の識別は，指紋認証や顔認証といった対象となる人物の意図的な接触や協力が必要であり，煩わしさがある．
+従来の識別は，指紋認証や顔認証といった対象となる人物の意図的な接触や協力が必要であることに加え，煩わしさがある．
 また，パスワードを記憶しておく必要があったり，トークンを保持しておく必要がある\cite{paper:password}．
-特にカメラベースの識別は数多く考案されているものの，いずれもプライバシー保護の観点で問題があると言える．
-そこで近年，外的環境要因に強く，コストが低い，プライバシーの保護という観点から非接触で行うレーダベースの人物識別が注目を集めている．外的環境要因とは具体的に言えば，使用環境の照度，雪や霧といった悪天候，障害物などである．代替手段となりえるビジョンベースのLiDAR(Light Detection And Ranging)は環境要因に影響を受けやすく，被験者自身に装着するウェアラブルセンサーは対象人物の協力が必要となる\cite{paper:unsupervised}．また，Wi-Fiはチャネルが混雑しており，干渉や環境ノイズの影響を強く受けてしまう．
+特にカメラベースの識別は既に実生活でも数多く実装されているものの，いずれもプライバシー保護の観点で問題があると言える．
+そこで近年，外的環境要因に強く，コストが低い，プライバシーの保護という観点から非接触で行うレーダベースの人物識別が注目を集めている．外的環境要因とは具体的に言えば，使用環境の照度，雪や霧といった悪天候，障害物などである\cite{paper:Wireless_survey, paper:respi_svm, paper:respiratory}．代替手段となりえるビジョンベースのLiDAR(Light Detection And Ranging)は環境要因に影響を受けやすく，被験者自身に装着するウェアラブルセンサーは対象人物の協力が必要となる．また，Wi-Fiはチャネルが混雑しており，干渉や環境ノイズの影響を強く受けてしまう\cite{paper:unsupervised}．
 レーダを用いた識別は，見守りシステムや侵入者検知，継続的な認証など様々な場面における応用が期待されている\cite{paper:Wireless_survey}．
-継続的な認証とは
+継続的な認証とはユーザが入室やデバイスの認証といったセッション開始時に一度だけ認証される従来の認証とは異なり，定期的に何度も認証を行うことを指し，より強固なセキュリティをもたらす\cite{paper:continuous_auth}．
+
 レーダは，心拍や呼吸によって引き起こされる胸壁変位を検出可能である\cite{paper:Wireless_survey}．そのため
 レーダベースの識別では，心拍や呼吸といった生体信号や，歩行特徴といった信号を基に識別が行われるが，これはそれらの信号に人物に固有の特徴が含まれるためである．よって，なりすましがされにくいというメリットもある\cite{paper:HeartSignature}．一方で体動によるノイズに弱く，それらをどのように除去するかは課題の1つとなっている．
 
-元々ノイズの少ない心拍信号を用いるため，ECGを用いた
+元々ノイズの少ない心拍信号を用いるために，ECGを用いた研究は多く存在する\cite{paper:ecg1, paper:ecg2, paper:ensemble}．しかし，測定機器を持ち運び，対象人物に装着させる必要があるため，あまり実用的ではない\cite{paper:Xing}．
+それゆえ本研究では，ドップラーレーダを用いた非接触な人物識別を行う．
 
-% \textcolor{red}{
-レーダの種類にはCW(Continuous Wave)レーダ（ドップラーレーダ）やFMCW(Frequency Modulated Continuous Wave)レーダが
-近年，ドップラーレーダは様々な研究において，人間の生体信号を非接触に検出するハードウェアとして注目を集めている．
-・ECG(Electrocardiogram)を用いるのは，高い識別精度が得られるが，測定機器を持ち運ぶ必要があり，それを対象人物に装着する必要があるため，あまり実用的ではない．(Xing)
-・非接触の継続的な認証システムは、ログインセッションを通してシステムのセキュリティを維持する上で重要な役割を果たすことができる(呼吸SVM)
-
-心拍や呼吸といった生体信号を用いた人物識別研究の多くは，テスト時に未知の人物が含まれないクローズセット環境下における評価をしており，テスト時に未知の人物が含まれるオープンセット環境下での評価を行っていない．
+レーダで取得した心拍や呼吸といった生体信号を用いた従来の人物識別研究の多くは，テスト時に未知の人物が含まれないクローズセット環境下における評価をしており，テスト時に未知の人物が含まれるオープンセット環境下での評価を行っていない．
 そこで本研究では，オープンセット環境下におけるレーダ心拍信号を用いた人物識別を行う．ここではオープンセット環境を，既知の人物のクラス数を$N$として，未知の人物であるというクラスを1つ加えた$N+1$個のクラスでの識別と定義する．
 
 % \textcolor{red}{Opennessの定義}
@@ -149,9 +145,9 @@ $A_I, A_Q$はそれぞれ$I/Q$信号の振幅，$\theta$は初期位相シフト
 \end{figure}
 
 \chapter{関連研究}
-本章では，接触型の心拍信号，非接触型のレーダやWi-Fiを用いて取得した歩行特徴や呼吸といった信号を基に人物識別を行った研究について述べる．（それぞれ2-3個出す）
+本章では，接触型の心拍信号，非接触型のレーダを用いて取得した歩行特徴や呼吸といった信号を基に人物識別を行った研究について述べる．
 \section{ECGを基にした人物識別}
-ECGを用いて人物識別を行った最新の研究として，LeeらはECG信号を用いた1次元LSTM(Long Short Term Memory)と2次元CNN(Convolutional Neural Network)のアンサンブルアプローチを提案した．
+ECGを用いて人物識別を行った最新の研究として，LeeらはECG信号を用いた1次元LSTM(Long Short Term Memory)と2次元CNN(Convolutional Neural Network)のアンサンブルアプローチを提案した\cite{paper:ensemble}．
 LPF(Low Pass Filter)で前処理されたECG信号は，Rピークごとに周期でセグメントされ，片方は波形のままLSTMへ，もう片方は，STFT(Short Time Fourier Transform), CWT(Continuous Wavelet Transform)，FSST(Fourier Synchrosqueezed Transform), WSST(Wavelet Synchrosqueezed Transform)を用いて，時間-周波数領域へと変換された画像がCNNに入力される．CNNには事前学習されたGoogleNet, VGG-19, ResNet-101が用いられた．
 
 
@@ -188,7 +184,7 @@ Zhaoらは，FMCWレーダを用いて適用可能な範囲内の人間の点群
 
 \section{心拍信号のスペクトログラムを用いた深層学習による人物識別\cite{paper:HeartID}}
 \subsection{手法}
-24 GHz？ドップラーレーダを用いて取得した心拍信号に対し，STFT(Short Time Fourier Transform)を実行して得たスペクトログラムが入力である．
+24 GHz?ドップラーレーダを用いて取得した心拍信号に対し，STFT(Short Time Fourier Transform)を実行して得たスペクトログラムが入力である．
 そして，時間軸と周波数軸で表現された特徴量をAlexNetを基にしたDCNN(Deep Convolutional Neural Network)で抽出し，4人の人物識別をクローズセット環境下で行った．
 \cite{paper:HeartID}では，人物識別における深層学習の有用性を示している．比較手法として，SVM(Support Vector Machine), Naive Bayes, そしてそれらを組み合わせた手法のSVM-Bayesが挙げられており，用いられた手動の特徴量は以下の三種である．一つ目は，心拍信号の周期，二つ目は心拍信号のエネルギー，三つ目はドップラー信号の帯域幅である．
 
@@ -216,7 +212,7 @@ Naive Bayes & 80.75\% \\
 6ポートCW(Continuous Wave)レーダを用いて取得した心拍信号が入力であり，使用されたデータセットは本研究でも評価した公開データセットである．
 手動の特徴量ではなく，1次元のCNN(Convolutional Neural Network)を用いて特徴量を抽出して分類に使用する．
 それらの特徴量はユークリッド距離をベースとした損失関数を通してネットワークに学習される．各クラスにそれぞれ双極子が設定されており，損失関数はそれらの双極子とマッピングされた特徴量との距離が主な要素となっている．
-これらの損失関数はクラス内のクラスタリング，クラス間の分離をどちらも強化する．それによって，特徴量空間上でクラスがより分離可能な分布となる．
+これらの損失関数は，各クラスに距離ベースの類似性を与え，従来の関数よりも特徴量空間上でクラスがより分離可能な分布とするはたらきがある．
 また，双極子自体の分布も学習により調整され，抽出された特徴量とは敵対的学習の形をとる．識別の際にも双極子は使用され，ある心拍セグメントの潜在表現がクラスAの正極から閾値以上の距離があるか，負極から閾値以下の距離に存在する場合に，その心拍セグメントはクラスAと識別される．以上のように提案されたアーキテクチャは，オープンセット環境下で，学習に使用していない未知のデータに対しても対応できるように考案されたものである．
 
 \subsection{実験結果}
@@ -237,23 +233,36 @@ Naive Bayes & 80.75\% \\
 \label{table:HeartSignature}
 \end{table}
 
-\section{心拍信号を基にした，転移学習とアンサンブル学習を用いたオープンセット環境下における人物識別\cite{paper:Xing}}
+\section{心拍信号を基にした，転移学習と2つのモデルを用いたオープンセット環境下における人物識別\cite{paper:Xing}}
+\subsection{手法}
+本研究と同様の公開データセットに含まれる，心拍信号セグメントを用いて人物識別を行っている研究である．2種のモデルと分類器を用いて最終的な識別を行っているのが特徴であり，一方のモデルでは分類器はSoftMaxだが，もう一方のモデルではオープンセットの分類に適したOpenMax\cite{}という分類器が用いられている．このOpenMaxはテストデータ中に含まれる未知のクラスを識別することに貢献している．2つのモデルはECGのデータセットで事前学習されたものを，さらにレーダ心拍信号を用いてキャリブレーションして学習を行っている．
+クラスを識別する際には，2つの分類器から出力された確率のスコアを組み合わせることでより高い精度の識別に成功している．
+
+\subsection{実験結果}
+実験では，クローズセット環境下とオープンセット環境下の2つの状態で評価が行われた．
+表\ref{table:Xing}に結果を示す．
+
+\begin{table}[H]
+\caption{クローズ/オープンセットにおける精度}
+\centering
+\begin{tabular}{ccc}
+\hline
+環境 & 人数 & 精度 \\
+\hline
+クローズセット & 30 & 98.76\% \\
+オープンセット & 15/15 & 94.35\% \\
+\hline
+\end{tabular}
+\label{table:Xing}
+\end{table}
 
 
 \chapter{提案法}
 \section{従来法の問題点と提案法}
-% \textcolor{red}{STFTを用いた時間-周波数画像(ヒートマップ)を入力としたCNNによる分類
-→ 特徴量がSTFTの際に画像変換で失われてる
-DDLMを用いた手法．Distance-basedな損失関数を使用．Decision makingも特殊（正？極から閾値よりも離れているか，負？極に閾値よりも近いかで当該IDかどうか判断）
-未知の被験者を既知の被験者と判断してしまっている（混同行列）．複雑なアーキテクチャにもかかわらず，訓練されたモデルがうまく出力をばらけさせられていない
-→ 損失関数と分類器を工夫できているが，Open setの評価ではまだ精度が劣化してしまっており課題がある．
-CNNを2つ用いてOpenMaxとSoftmaxでアンサンブル．ECG datasetによる転移学習も活用している．
-→ 2つのモデルを訓練する必要がある．損失関数が単純．
-損失関数が~~単純~~(DDLMは複雑)で，特徴量のマッピングがばらけていないことが問題と考えられる
-全てに共通すること
-- Open-setでの精度がまだまだ低い
-→ モデルが出力する特徴量のマッピングがばらけていないことが原因と考える．unknownとknownの距離が近い．
-→ 損失関数にSoftmax loss + Center lossを用いることでクラス内分散を最小化，クラス間分散を最大化する
+従来法\cite{paper:HeartID}では，STFTを用いた時間-周波数画像(ヒートマップ)を入力としたCNNによる分類が提案されているが，STFTの弱点として，特徴量が画像に変換される際に失われてしまう点にあると考えられる．
+従来法\cite{paper:HeartSignature}, \cite{papar:Xing}では，損失関数やクラスの識別方法に複雑なアーキテクチャを採用し，高い識別精度を達成しているものの，オープンセット環境下ではクローズセット環境に比べて精度が劣化してしまっているという問題がある．これは，各クラスの特徴量空間におけるマッピングが互いに近すぎるが故に，未知の被験者を既知の被験者と誤って（逆も然り）判断してしまっているためであると考えられる．
+
+そこで本研究では，損失関数にSoftmax lossとCenter lossを用いることでクラス内分散を最小化しつつ，クラス間分散を最大化させ，オープンセット環境下でも精度が劣化しにくいモデルを提案する．さらに，ノイズの多いデータセットについても検討を行い，ウェーブレット再構成を導入することでノイズの多いデータに対しても効果的に識別ができることを示す．
 
 \section{提案法のアルゴリズム}
 提案法のアルゴリズムを図\ref{fig:proposed_method}に示す．
@@ -403,7 +412,7 @@ $\alpha$ (Center Loss) & 0.1 \\
 
 \subsection{オープンセット環境下における実験結果}
 既知の人物を15名，未知の人物を15名として実験を行った．
-オープンセット環境でCenter Lossを採用した提案手法は，Softmax-Thresholdのしきい値が0.7の時，99.02\%の精度を達成した．図\ref{fig:30open-conf}に10分割交差検証を行った内の混同行列の例を示す．ラベル0-14が既知の人物のクラスを表し，ラベル15が未知の人物のク既知の人物を15名，未知の人物を15名として実験を行った．ラスを表す．
+オープンセット環境でCenter Lossを採用した提案手法は，Softmax-Thresholdのしきい値が0.7の時，99.02\%の精度を達成した．図\ref{fig:30open-conf}に10分割交差検証を行った内の混同行列の例を示す．ラベル0-14が既知の人物のクラスを表し，ラベル15が未知の人物のクラスを表す．
 
 
 \begin{figure}[H]
@@ -415,7 +424,45 @@ $\alpha$ (Center Loss) & 0.1 \\
 \label{fig:30open-conf}
 \end{figure}
 
+\subsection{一般的な損失関数との比較}
+本研究では特徴量マッピングを分散させ，より未知の人物を精度高く分類するためのCenter Lossを採用したが，ここでは一般的に分類タスクで用いられるCross Entropy Lossを用いた場合との比較を表\ref{table:comparison_loss}に示す．
+表より，Center Lossを用いた場合の方が10.4\%精度が改善していることが分かる．つまり，本提案手法において，Center Lossの精度への寄与が高いことが伺える．
+
+\begin{table}[H]
+\caption{損失関数を変更した場合の比較}
+\centering
+\begin{tabular}{cccc}
+\hline
+環境 & 手法 & 既知/未知の人数 & 精度 \\
+\hline
+オープンセット & Cross Entropy Loss & 15/15 & 88.60\% \\
+& Center Loss & 15/15 & 99.02\% \\
+\hline
+\end{tabular}
+\label{table:comparison_loss}
+\end{table}
+
 \subsection{従来法との比較}
+従来法\cite{paper:HeartSignature, paper:Xing}は本節で用いているデータセットと同一のものを使用しているため，ここで表\ref{table:comparison30}に従来法と提案法の精度の比較を示す．表からいずれの環境下においても，Center Lossを用いた提案法が2つの従来法の精度を凌駕していることが確認できる．
+
+\begin{table}[H]
+  \caption{2つの従来法と提案法との比較}
+  \centering
+  \begin{tabular}{cccc}
+  \hline
+  環境 & 手法 & 既知/未知の人数 & 精度 \\
+  \hline
+  クローズセット & Yan et al.\cite{paper:HeartSignature} & (30/0) & 99.17\% \\
+  & Xing et al.\cite{paper:Xing} & (30/0) & 98.76\% \\
+  & \textbf{提案法(Center Loss)} & (30/0) & \textbf{99.94\%} \\
+  \hline
+  オープンセット & Yan et al.\cite{paper:HeartSignature} & 15/15 & 93.57\% \\
+  & Xing et al.\cite{paper:Xing} & 15/15 & 94.35\% \\
+  & \textbf{提案法(Center Loss)} & 15/15 & \textbf{99.02\%} \\
+  \hline
+  \end{tabular}
+  \label{table:comparison30}
+\end{table}
 
 
 \section{ノイズの多いデータセットについて}
@@ -469,7 +516,7 @@ $\alpha$ (Center Loss) & 0.1 \\
 \label{fig:12close-conf}
 \end{figure}
 
-\subsection{オープンセット環境下における実験諸元}
+\subsection{オープンセット環境下における実験結果}
 オープンセット環境でCenter Lossとウェーブレット再構成を採用した提案手法は，Softmax-Thresholdのしきい値が0.7の時，42.28\%の精度を達成した．図\ref{fig:12open-conf}に10分割交差検証を行った内の混同行列の例を示す．ラベル0-5が既知の人物のクラスを表し，ラベル6が未知の人物のクラスを表す．
 
 \begin{figure}[H]
@@ -480,8 +527,6 @@ $\alpha$ (Center Loss) & 0.1 \\
 既知の人物は6名，未知の人物は6名，しきい値0.7}
 \label{fig:12open-conf}
 \end{figure}
-
-
 
 また、表\ref{table:wavelet}から，よりノイズが多く含まれる慶應病院のデータセットについて，ウェーブレット再構成を行った方がウェーブレット再構成を行わない場合，一般的なBPFの処理のみを行う場合よりも精度が大きく改善していることが分かる.
 
@@ -525,6 +570,31 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
 
   \bibitem{paper:respi_svm}
   S. M. M. Islam, A. Rahman, N. Prasad, O. Boric-Lubecke and V. M. Lubecke, "Identity Authentication System using a Support Vector Machine (SVM) on Radar Respiration Measurements," 2019 93rd ARFTG Microwave Measurement Conference (ARFTG), Boston, MA, USA, 2019, pp. 1-5
+
+  \bibitem{paper:respiratory}
+  S. M. M. Islam, A. Sylvester, G. Orpilla and V. M. Lubecke
+  \newblock Respiratory feature extraction for radar-based continuous identity authentication
+  \newblock {\it 2020 IEEE Radio and Wireless Symposiun (RWS)}. pp. 119-122, 2020.
+  
+  \bibitem{paper:continuous_auth}
+  Dahia, Gabriel, Leone Jesus, and Mauricio Pamplona Segundo
+  \newblock Continuous authentication using biometrics: An advanced review
+  \newblock {\it Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery}, Vol. 10, No. 4, 2020
+
+  \bibitem{paper:ecg1}
+  Biel L, Pettersson O, Philipson L, Wide P
+  \newblock ECG analysis: A new approach in human identification
+  \newblock {\it IEEE Trans. Instrum. Meas.} Vol. 50, pp.808-812, 2001
+
+  \bibitem{paper:ecg2}
+  M. Ingale, R. Cordeiro, S. Thentu, Y. Park and N. Karimian
+  \newblock ECG biometric authentication: A comparative analysis
+  \newblock {\it IEEE Access}, Vol. 8, pp.117853-117866
+
+  \bibitem{paper:ensemble}
+  J.-A. Lee and K.-C. Kwak
+  \newblock Personal Identification Using an Ensemble Approach of 1D-LSTM and 2D-CNN with Electrocardiogram Signals
+  \newblock {\it Applied Sciences},  Vol. 12, No. 5, p. 2692, 2022
 
   \bibitem{paper:dynamic1}
   Feng Lin, Chen Song, Yan Zhuang, Wenyao Xu, Changzhi Li, and Kui Ren
