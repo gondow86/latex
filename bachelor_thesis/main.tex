@@ -339,7 +339,7 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 
 CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関するグラフ, Wavelet Reconstructionの有無
 \section{ノイズの少ないデータセットについて}
-ノイズの少ないデータセットでは図\ref{fig:proposed_method}から，Center Lossによって効果的に被験者が分類されることを示す．
+本節では，ノイズの少ないデータセットを用いて，図\ref{fig:proposed_method}から，Center Lossによって効果的に被験者が分類されることを示す．
 \subsection{実験諸元}
 エルランゲン大学病院にて24GHz 6ポート CW(Continuous Wave)レーダで収集された健康な30人の被験者で構成される公開データセットを使用した\cite{paper:30-dataset}．データセットの内容は表\ref{table:30-dataset}のようになる．サンプリングレートは学習の段階で2000 Hzから250 Hzにリサンプリングして使用した．
 また，実際にレーダで被験者の心拍信号を測定する様子を図\ref{fig:setting_clean}に示す．レーダから被験者の身体表面までの距離は約40cmに設定されている．
@@ -370,6 +370,7 @@ BMI & 23.2 $\pm$ 3.3 \\
 \begin{tabular}{cc}
 \hline
 被験者クラス数 & 30 \\
+既知/未知 (オープンセット) & 15/15 \\
 エポック数 & 300 \\
 バッチサイズ & 64 \\
 学習率 & 0.0001 \\
@@ -386,12 +387,12 @@ $\alpha$ (Center Loss) & 0.1 \\
 \begin{center}
 \includegraphics[width=0.8\linewidth]{./fig/radar_setting_clean.png}
 \end{center}
-\caption{6ポートCWレーダで心拍信号を計測する様子}
+\caption{6ポートCWレーダで心拍信号を計測する様子\cite{paper:30-dataset}}
 \label{fig:setting_clean}
 \end{figure}
 
 \subsection{クローズセット環境下における実験結果}
-クローズセット環境でCenter Lossを採用した提案手法は99.94\%の精度を達成した．図\ref{fig:30close-conf}に10倍交差検証を行った内の混同行列の例を示す．
+クローズセット環境でCenter Lossを採用した提案手法は99.94\%の精度を達成した．図\ref{fig:30close-conf}に10分割交差検証を行った内の混同行列の例を示す．
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\linewidth]{./fig/clean_dataset/cross_val_Fold0_close.png}
@@ -401,21 +402,26 @@ $\alpha$ (Center Loss) & 0.1 \\
 \end{figure}
 
 \subsection{オープンセット環境下における実験結果}
-表\ref{table:center_loss}から，Center Lossが一般的に分類タスクに用いられるCross Entropy Lossと比較して，精度が向上していることが分かる．
+既知の人物を15名，未知の人物を15名として実験を行った．
+オープンセット環境でCenter Lossを採用した提案手法は，Softmax-Thresholdのしきい値が0.7の時，99.02\%の精度を達成した．図\ref{fig:30open-conf}に10分割交差検証を行った内の混同行列の例を示す．ラベル0-14が既知の人物のクラスを表し，ラベル15が未知の人物のク既知の人物を15名，未知の人物を15名として実験を行った．ラスを表す．
 
-Opennessを変化させていくと，図\ref{fig:threshold}より、未知のクラスと判断するためのしきい値を変化させていった場合に、0.7?で精度が最大となりその後劣化していく事がわかる。これは、最大化するまでは未知のクラスを既知のクラスと間違い、その後は既知のクラスを未知のクラスと間違えているためである。既知のクラスの学習がうまくいっているほど、しきい値が高くなるにつれて
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\linewidth]{./fig/clean_dataset/cross_val_Fold0_threshold0.8_15_15.png}
 \end{center}
-\caption{title}
+\caption{30人の被験者の分類，ノイズの少ないデータセットでオープンセット環境の場合.
+既知の人物は15名，未知の人物は15名，しきい値0.7}
+\label{fig:30open-conf}
 \end{figure}
+
+\subsection{従来法との比較}
 
 
 \section{ノイズの多いデータセットについて}
+本節では，ノイズの多いデータセットについて，図\ref{fig:proposed_method}より，Center Lossに加えて前処理にウェーブレット再構成によるノイズ除去を行うことで，提案手法が拡張されることを示す．
 \subsection{実験諸元}
-慶應大学病院で収集された12人の被験者で構成される非公開データセットを使用した．データセットの内容は表\ref{table:keio_hospital}の通りである．サンプリングレートは学習の段階で1000 Hzから250 Hzにリサンプリングして使用した．シナリオは休息であるものの，生データからは，体動等が原因と思われるノイズが確認されている．
+慶應大学病院で収集された12人の被験者で構成される非公開データセットを使用した．データセットの内容は表\ref{table:keio_hospital}の通りである．サンプリングレートは学習の段階で1000 Hzから250 Hzにリサンプリングして使用した．シナリオは休息であるものの，生データからは，体動等が原因と思われるノイズが確認されている．実験を行った際のハイパーパラメータを表\ref{table:12-parameter}に示す．モデルとCenter Lossのオプティマイザはノイズの少ないデータセットの場合と同様で，それぞれAdamとSGDである．
 
 \begin{table}[H]
   \caption{慶應大学病院で計測されたレーダ心拍信号の諸元}
@@ -430,28 +436,58 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
   \hline
   \end{tabular}
   \label{table:keio_hospital}
-  \end{table}
+\end{table}
+
+\begin{table}[H]
+  \caption{ハイパーパラメータ}
+  \centering
+  \begin{tabular}{cc}
+  \hline
+  被験者クラス数 & 12 \\
+  既知/未知 (オープンセット) & 6/6 \\
+  エポック数 & 300 \\
+  バッチサイズ & 64 \\
+  学習率 & 0.0001 \\
+  ウィンドウ (秒) & 5.0 \\
+  オーバーラップ (秒) & 1.5 \\
+  $\alpha$ (Center Loss) & 0.1 \\
+  学習率 (Center Loss) & 0.05 \\
+  \hline
+  \end{tabular}
+  \label{table:12-parameter}
+\end{table}
 
 \subsection{クローズセット環境下における実験結果}
+クローズセット環境でCenter Lossとウェーブレット再構成を採用した提案手法は78.02\%の精度を達成した．図\ref{fig:12close-conf}に10分割交差検証を行った内の混同行列の例を示す．
 
-また、表\ref{table:wavelet}から，よりノイズが多く含まれる慶應病院のデータセットについて，ウェーブレット再構成を行った方がウェーブレット再構成を行わない場合，一般的なBPFの処理のみを行う場合よりも精度が大きく改善していることが分かる.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\linewidth]{./fig/noisy_dataset/cross_val_Fold0_close.png}
 \end{center}
-\caption{title}
+\caption{12人の被験者の分類，ノイズの多いデータセットでクローズセット環境の場合}
+\label{fig:12close-conf}
 \end{figure}
 
 \subsection{オープンセット環境下における実験諸元}
+オープンセット環境でCenter Lossとウェーブレット再構成を採用した提案手法は，Softmax-Thresholdのしきい値が0.7の時，42.28\%の精度を達成した．図\ref{fig:12open-conf}に10分割交差検証を行った内の混同行列の例を示す．ラベル0-5が既知の人物のクラスを表し，ラベル6が未知の人物のクラスを表す．
 
 \begin{figure}[H]
   \begin{center}
   \includegraphics[width=\linewidth]{./fig/noisy_dataset/cross_val_Fold0_threshold0.7_6_6.png}
   \end{center}
-\caption{title}
+\caption{12人の被験者の分類，ノイズの多いデータセットでオープンセット環境の場合.
+既知の人物は6名，未知の人物は6名，しきい値0.7}
+\label{fig:12open-conf}
 \end{figure}
-  
+
+
+
+また、表\ref{table:wavelet}から，よりノイズが多く含まれる慶應病院のデータセットについて，ウェーブレット再構成を行った方がウェーブレット再構成を行わない場合，一般的なBPFの処理のみを行う場合よりも精度が大きく改善していることが分かる.
+
+表\ref{table:center_loss}から，Center Lossが一般的に分類タスクに用いられるCross Entropy Lossと比較して，精度が向上していることが分かる．
+
+Opennessを変化させていくと，図\ref{fig:threshold}より、未知のクラスと判断するためのしきい値を変化させていった場合に、0.7?で精度が最大となりその後劣化していく事がわかる。これは、最大化するまでは未知のクラスを既知のクラスと間違い、その後は既知のクラスを未知のクラスと間違えているためである。既知のクラスの学習がうまくいっているほど、しきい値が高くなるにつれて
 
 \chapter{結論}
 

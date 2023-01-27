@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  27 JAN 2023 04:36
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  27 JAN 2023 05:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -384,72 +384,72 @@ File: ./fig/radar_setting_clean.png Graphic file (type bmp)
 File: ./fig/clean_dataset/cross_val_Fold0_close.png Graphic file (type bmp)
 <./fig/clean_dataset/cross_val_Fold0_close.png>
  [24]
-
-LaTeX Warning: Reference `table:center_loss' on page 25 undefined on input line
- 404.
-
-
-LaTeX Warning: Reference `fig:threshold' on page 25 undefined on input line 406
-.
-
-[25]
 File: ./fig/clean_dataset/cross_val_Fold0_threshold0.8_15_15.png Graphic file (
 type bmp)
 <./fig/clean_dataset/cross_val_Fold0_threshold0.8_15_15.png>
- [26]
-
-LaTeX Warning: Reference `table:wavelet' on page 27 undefined on input line 437
-.
-
+ [25] [26] [27]
 File: ./fig/noisy_dataset/cross_val_Fold0_close.png Graphic file (type bmp)
 <./fig/noisy_dataset/cross_val_Fold0_close.png>
-[27]
+ [28]
 File: ./fig/noisy_dataset/cross_val_Fold0_threshold0.7_6_6.png Graphic file (ty
 pe bmp)
 <./fig/noisy_dataset/cross_val_Fold0_threshold0.7_6_6.png>
- [28] [29]
+ [29]
+
+LaTeX Warning: Reference `table:wavelet' on page 30 undefined on input line 486
+.
+
+
+LaTeX Warning: Reference `table:center_loss' on page 30 undefined on input line
+ 488.
+
+
+LaTeX Warning: Reference `fig:threshold' on page 30 undefined on input line 490
+.
+
+[30] [31]
 第 7 章
-[30
+[32
 
-] [31
-
-]
-LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 496.
-LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 501.
- [32
+] [33
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 507.
+(Font)              No change on input line 532.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 512.
+(Font)              No change on input line 537.
+ [34
+
+]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 517.
+(Font)              No change on input line 543.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 526.
- [33]
+(Font)              No change on input line 548.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 540.
+(Font)              No change on input line 553.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 545.
+(Font)              No change on input line 562.
+ [35]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 550.
+(Font)              No change on input line 576.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 555.
+(Font)              No change on input line 581.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 560.
- [34]
+(Font)              No change on input line 586.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 565.
+(Font)              No change on input line 591.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 574.
+(Font)              No change on input line 596.
+ [36]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 579.
- [35] [36]
+(Font)              No change on input line 601.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 610.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 615.
+ [37] [38]
 付 録 A  
-[37
+[39
 
 ] (./main.aux)
 
@@ -457,12 +457,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3400 strings out of 480241
- 54074 string characters out of 5895801
+ 3404 strings out of 480241
+ 54146 string characters out of 5895801
  347351 words of memory out of 5000000
- 21638 multiletter control sequences out of 15000+600000
+ 21642 multiletter control sequences out of 15000+600000
  486368 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,10n,62p,725b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,10n,62p,725b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (43 pages, 67956 bytes).
+Output written on main.dvi (45 pages, 72924 bytes).
