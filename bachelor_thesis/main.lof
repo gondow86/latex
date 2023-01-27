@@ -4,13 +4,15 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces ウェーブレット再構成適用前と適用後の波形の比較}}{16}{}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces InceptionTimeの構造概要}}{18}{}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces 提案法のアルゴリズム}}{19}{}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces ノイズの少ない心拍信号データセットから取得した胸壁変位波形の例}}{16}{}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces ウェーブレット再構成適用前と適用後の波形の比較}}{17}{}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces InceptionTimeの構造概要}}{19}{}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces 提案法のアルゴリズム}}{20}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces title}}{21}{}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces title}}{23}{}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces title}}{25}{}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces title}}{26}{}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces 6ポートCWレーダで心拍信号を計測する様子}}{23}{}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces title}}{24}{}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces title}}{26}{}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces title}}{28}{}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces title}}{29}{}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

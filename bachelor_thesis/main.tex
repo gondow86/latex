@@ -81,22 +81,20 @@
 
 \section{背景}
 人物識別は多様なアプリケーションで利用されている．
-従来の識別は，指紋認証や顔認証といった対象となる人物の意図的な接触や協力が必要である．
+従来の識別は，指紋認証や顔認証といった対象となる人物の意図的な接触や協力が必要であり，煩わしさがある．
 また，パスワードを記憶しておく必要があったり，トークンを保持しておく必要がある\cite{paper:password}．
 特にカメラベースの識別は数多く考案されているものの，いずれもプライバシー保護の観点で問題があると言える．
-そこで近年，外的環境要因に強く，コストが低い，プライバシーの保護という観点から非接触で行うレーダベースの人物識別が注目を集めている．外的環境要因とは具体的に言えば，使用環境の照度，雪や霧といった悪天候，障害物などである．
-レーダを用いた識別は，見守りシステムや侵入者検知，継続的な認証など様々な場面における応用が期待されている．
-継続的な認証とは，
-レーダーベースの識別では，心拍や呼吸といった生体信号や，歩行特徴といった信号を基に識別が行われるが，それらの信号には人物に固有の特徴が含まれるため，なりすましがされにくいというメリットもある．一方で体動によるノイズに弱く，それらをどのように除去するかは課題の1つとなっている．
+そこで近年，外的環境要因に強く，コストが低い，プライバシーの保護という観点から非接触で行うレーダベースの人物識別が注目を集めている．外的環境要因とは具体的に言えば，使用環境の照度，雪や霧といった悪天候，障害物などである．代替手段となりえるビジョンベースのLiDAR(Light Detection And Ranging)は環境要因に影響を受けやすく，被験者自身に装着するウェアラブルセンサーは対象人物の協力が必要となる\cite{paper:unsupervised}．また，Wi-Fiはチャネルが混雑しており，干渉や環境ノイズの影響を強く受けてしまう．
+レーダを用いた識別は，見守りシステムや侵入者検知，継続的な認証など様々な場面における応用が期待されている\cite{paper:Wireless_survey}．
+継続的な認証とは
+レーダは，心拍や呼吸によって引き起こされる胸壁変位を検出可能である\cite{paper:Wireless_survey}．そのため
+レーダベースの識別では，心拍や呼吸といった生体信号や，歩行特徴といった信号を基に識別が行われるが，これはそれらの信号に人物に固有の特徴が含まれるためである．よって，なりすましがされにくいというメリットもある\cite{paper:HeartSignature}．一方で体動によるノイズに弱く，それらをどのように除去するかは課題の1つとなっている．
+
+元々ノイズの少ない心拍信号を用いるため，ECGを用いた
 
 % \textcolor{red}{
 レーダの種類にはCW(Continuous Wave)レーダ（ドップラーレーダ）やFMCW(Frequency Modulated Continuous Wave)レーダが
 近年，ドップラーレーダは様々な研究において，人間の生体信号を非接触に検出するハードウェアとして注目を集めている．
-・心拍や呼吸によって引き起こされる胸壁変位を検出可能である．
-・レーダは主にマイクロ波を用いるため，
-・LiDAR(Light Detection And Ranging)は環境要因に影響を受けやすい(unsupervised)
-・ウェアラブルセンサーは対象人物の協力が必要(unsupervised)
-・Wi-Fiはチャネルが混雑しており，干渉や環境ノイズの影響を強く受ける(unsupervised)
 ・ECG(Electrocardiogram)を用いるのは，高い識別精度が得られるが，測定機器を持ち運ぶ必要があり，それを対象人物に装着する必要があるため，あまり実用的ではない．(Xing)
 ・非接触の継続的な認証システムは、ログインセッションを通してシステムのセキュリティを維持する上で重要な役割を果たすことができる(呼吸SVM)
 
@@ -104,7 +102,7 @@
 そこで本研究では，オープンセット環境下におけるレーダ心拍信号を用いた人物識別を行う．ここではオープンセット環境を，既知の人物のクラス数を$N$として，未知の人物であるというクラスを1つ加えた$N+1$個のクラスでの識別と定義する．
 
 % \textcolor{red}{Opennessの定義}
-
+またここで，オープンネス指数を定義する．$C_{train}$と$C_{test}$をそれぞれトレーニングセットとテストセットにおける被験者のクラス数である．オープンネス指数は，テスト時にモデルがどの程度の未知のクラスに遭遇するのかを定量化するために使用され，一般的にはこの指数が高いほど，分類問題は困難になる\cite{paper:HeartSignature}
 \begin{equation}\label{}
   openness = 1 - \sqrt{\frac{C_{train}}{C_{test}}}
 \end{equation}
@@ -241,6 +239,7 @@ Naive Bayes & 80.75\% \\
 
 \section{心拍信号を基にした，転移学習とアンサンブル学習を用いたオープンセット環境下における人物識別\cite{paper:Xing}}
 
+
 \chapter{提案法}
 \section{従来法の問題点と提案法}
 % \textcolor{red}{STFTを用いた時間-周波数画像(ヒートマップ)を入力としたCNNによる分類
@@ -270,9 +269,18 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 	\Delta x = \frac{\Delta \sigma}{2 \pi} \cdot \frac{\lambda}{2}
 \end{equation}
 
-そうして得られた胸壁変位波形の例を図\ref{fig:distance1}に示す．
+そうして得られた胸壁変位波形の例を図\ref{fig:distance1}に示す．横軸はサンプリングされたポイントの数，縦軸は正規化された後の振幅をそれぞれ示している．
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\linewidth]{./fig/distance01.png}
+\end{center}
+\caption{ノイズの少ない心拍信号データセットから取得した胸壁変位波形の例}
+\label{fig:distance1}
+\end{figure}
 
 本稿では，ノイズの少ないデータセットとノイズの多いデータセットの2つを使用するが，後者の場合には次に説明をするウェーブレット再構成を行う．
+ドップラーレーダで得た心拍信号やECG(Electrocardiogram)からノイズ除去をするための手法の中で，いくつかの研究でウェーブレット再構成が使用されている\cite{paper:de-noise_technique, paper:dengue, paper:ecg_noise_removal}．
 後者のデータセット中の胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切な閾値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．今回はレベルを8，マザーウェーブレットをDaubechies8とした．閾値処理では，最も高周波な成分を0として取り除いた．図\ref{fig:wave}に被験者番号1の胸壁変位波形に対し，ウェーブレット再構成を適用する前後の波形の例を示す．横軸はサンプリングされたポイントの数，縦軸は正規化された後の振幅をそれぞれ示している．ウェーブレット再構成を適用した後の波形は，高周波のノイズが取り除かれていることが確認できる．
 
 \begin{figure}[H]
@@ -291,14 +299,14 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 また，ResNet\cite{paper:ResNet}に代表される残差接続を採用している点も大きな特徴の1つである．
 このような構造を持つため，InceptionTimeは時系列データの特徴を最大限に抽出可能である．
 
-損失関数にはSoftmax LossとCenter Lossを採用しており，以下のように定式化される．
+損失関数にはSoftmax LossとCenter Lossを採用しており，以下のように定式化される\cite{paper:centerloss}．
 \begin{equation}{L_{{\text{Softmax }}}} = \frac{1}{N}\sum\limits_{i = 1}^N 1 - \log \frac{{{e^{\left\| {{{\mathbf{w}}_{yi}}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _{yi}} + {{\mathbf{b}}_{yi}}}}}}{{\sum\limits_{j = 1}^C {{e^{\left\| {{{\mathbf{w}}_j}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _j} + {{\mathbf{b}}_j}}}} }}\tag{1}\end{equation}
 
 \begin{equation}{L_{{\text{Center }}}} = \frac{1}{2}\sum\limits_{i = 1}^N {{{\left\| {{\mathbf{x}}_i^j - {{\mathbf{c}}^j}} \right\|}_2}} ,(j = 1,2, \ldots ,C)\tag{2}\end{equation}
 
 \begin{equation}{L_{{\text{Total }}}} = {L_{{\text{Softmax }}}} + \alpha {L_{{\text{Center }}}}\end{equation}
 
-1次元CNNの最終層にはSoftmax層があるが，Softmax層は既知の$N$クラスにしかセグメントを分類することはできない．そこでオープンセット環境下では，Softmax-Thresholdという手法を採用し，これは，Softmaxの出力がある閾値以下であった場合にはその出力を未知のクラスに分類されたものとする方法である．
+1次元CNNの最終層にはSoftmax層があるが，Softmax層は既知の$N$クラスにしかセグメントを分類することはできない．そこでオープンセット環境下では，Softmax-Thresholdという手法を採用し，これは，Softmaxの出力がある閾値以下であった場合にはその出力を未知のクラスに分類する方法である．
 
 
 \begin{figure}[H]
@@ -320,22 +328,35 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 \chapter{実験評価}
 CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関するグラフ, Wavelet Reconstructionの有無
 \section{ノイズの少ないデータセットについて}
-エルランゲン大学病院で収集された30人の被験者で構成されるデータセットを使用した．データセットの内容は表\ref{table:30-dataset}のようになる．
+エルランゲン大学病院にて24GHz 6ポート CW(Continuous Wave)レーダーで収集された健康な30人の被験者で構成されるデータセットを使用し\cite{paper:30-dataset}．データセットの内容は表\ref{table:30-dataset}のようになる．サンプリングレートは学習の段階で2000 Hzから250 Hzにリサンプリングして使用した．
+また，実際にレーダで被験者の心拍信号を測定する様子を図\ref{fig:setting_clean}に示す．レーダから被験者の身体表面までの距離は約40cmに設定されている．
 
 \begin{table}[H]
-\caption{エルランゲン大学心拍信号の諸元}
+\caption{エルランゲン大学で測定された心拍データセットの諸元}
 \centering
 \begin{tabular}{cc}
 \hline
-被験者数 & 3 \\
-エポック数 & 4 \\
-学習率 & 79 GHz \\
-$\alpha$ & 3.4391 GHz \\
-サンプリングレート & 250 Hz \\
+被験者数 & 30 \\
+男性/女性 & 14/16 \\
+年齢 & 30.7 $\pm$ 9.9 \\
+身長 (cm) & 175.7 $\pm$ 10.5 \\
+体重 (kg) & 72.2 $\pm$ 14.0 \\
+BMI & 23.2 $\pm$ 3.3 \\
+サンプリングレート & 2000 Hz \\
+シナリオ & 休息 \\
+平均計測時間 (秒) & 2882 \\
 \hline
 \end{tabular}
 \label{table:30-dataset}
 \end{table}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\linewidth]{./fig/radar_setting_clean.png}
+\end{center}
+\caption{6ポートCWレーダで心拍信号を計測する様子}
+\label{fig:setting_clean}
+\end{figure}
 
 \subsection{クローズセット環境}
 \subsubsection{実験諸元}
@@ -430,15 +451,14 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
 %   著者名： 
 %   \newblock 文献名，
 %   \newblock 書誌情報，出版年．
-
-\bibitem{hoge08}
-  Taro Hogeyama, Jiro Hogeyama:
-  \newblock The Theory of Hoge,
-  \newblock {\it The Proceedings of The Hoge Society}, 2008.
-
   \bibitem{paper:password}
   L. O'Gorman, "Comparing passwords, tokens, and biometrics for user authentication," in Proceedings of the IEEE, vol. 91, no. 12, pp. 2021-2040, 2003.
-  
+
+  \bibitem{paper:Wireless_survey}
+  J. Liu, H. Liu, Y. Chen, Y. Wang and C. Wang
+  \newblock Wireless Sensing for Human Activity: A Survey
+  \newblock IEEE Communications Surveys \& Tutorials, vol. 22, no. 3, pp. 1629-1645, 2020,
+
   \bibitem{paper:respi_svm}
   S. M. M. Islam, A. Rahman, N. Prasad, O. Boric-Lubecke and V. M. Lubecke, "Identity Authentication System using a Support Vector Machine (SVM) on Radar Respiration Measurements," 2019 93rd ARFTG Microwave Measurement Conference (ARFTG), Boston, MA, USA, 2019, pp. 1-5
 
@@ -496,6 +516,21 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
   \newblock Quadrature Imbalance Compensation With Ellipse-Fitting Methods for Microwave Radar Physiological Sensing
   \newblock {\it IEEE Transactions on Microwave Theory and Techniques}, Vol.62, No.6, pp.1400-1408, 2014.
 
+\bibitem{paper:de-noise_technique}
+Xiaoling Li, Bin Liu, Yang Liu, Jiawei Li, Jiarui Lai, Ziming Zheng
+\newblock A Novel Signal Separation and De-Noising Technique for Doppler Radar Vital Signal Detection
+\newblock {\it Sensors} Vol. 19, No. 21, 2019
+
+\bibitem{paper:dengue}
+Nguyen Dinh Chinh, Luu Manh Ha, Guanghao Sun, Le Quoc Anh, Pham Viet Huong, Tran Anh Vu, Tran Trong Hieu, Tran Duc Tan, Nguyen Vu Trung, Koichiro Ishibashi, Nguyen Linh Trung
+\newblock Short time cardio-vascular pulses estimation for dengue fever screening via continuous-wave Doppler radar using empirical mode decomposition and continuous wavelet transform
+\newblock {\it Biomedical Signal Processing and Control}, Vol. 65, 2021
+
+\bibitem{paper:ecg_noise_removal}
+C. Haritha, M. Ganesan and E. P. Sumesh
+\newblock A survey on modern trends in ECG noise removal techniques
+\newblock {\it 2016 International Conference on Circuit, Power and Computing Technologies (ICCPCT)}, pp. 1-7, 2016 
+
 \bibitem{paper:InceptionTime}
   Hassan Ismail Fawaz, Benjamin Lucas, Germain Forestier, Chalotte Pelletier, Daniel F. Schmidt, Jonathan Weber, Geoffrey I. Webb, Lhassane Idoumaghar, Pierre-Alain Muller, Francois Petitjean
   \newblock InceptionTime: Finding AlexNet for time series classification
@@ -506,6 +541,14 @@ Szegedy, Christian, et al. "Inception-v4, inception-resnet and the impact of res
 
 \bibitem{paper:ResNet}
 He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
+
+\bibitem{paper:centerloss}
+Wen, Y., Zhang, K., Li, Z., Qiao, Y.. A Discriminative Feature Learning Approach for Deep Face Recognition. In: Leibe, B., Matas, J., Sebe, N., Welling, M. (eds) Computer Vision – ECCV 2016. ECCV 2016. Lecture Notes in Computer Science(), vol 9911. {\it Springer, Cham}, 2016
+
+\bibitem{paper:30-dataset}
+Sven Schellenberger, Kilin Shi, Tobias Steigleder, Anke Malessa, Fabian Michler, Laura Hameyer, Nina Neumann, Fabian Lurz, Robert Weigel, Christoph Ostgathe, Alexander Koelpin
+\newblock A dataset of clinically recorded radar vital signs with synchronised reference sensor signals
+\newblock {\it Sci Data}, Vol. 7, p. 291, 2020
 
 \end{bib}
 

@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  26 JAN 2023 18:10
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.2.2)  27 JAN 2023 03:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -319,7 +319,7 @@ File: ./fig/radar_figure_trim.pdf Graphic file (type pdf)
 ] [5]
 第 3 章
 
-Overfull \hbox (11.60606pt too wide) in paragraph at lines 156--158
+Overfull \hbox (11.60606pt too wide) in paragraph at lines 154--156
 \JY1/mc/m/n/12 用いた \OT1/cmr/m/n/12 1 \JY1/mc/m/n/12 次元 \OT1/cmr/m/n/12 LST
 M(Long Short Term Mem-ory) \JY1/mc/m/n/12 と \OT1/cmr/m/n/12 2 \JY1/mc/m/n/12 
 次元 \OT1/cmr/m/n/12 CNN(Convolutional
@@ -328,12 +328,12 @@ M(Long Short Term Mem-ory) \JY1/mc/m/n/12 と \OT1/cmr/m/n/12 2 \JY1/mc/m/n/12
 [6
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 175--175
+Underfull \hbox (badness 10000) in paragraph at lines 173--173
 []\JY1/mc/m/n/12 動的セグメン
  []
 
 [7] [8]
-Overfull \hbox (21.76285pt too wide) in paragraph at lines 186--187
+Overfull \hbox (21.76285pt too wide) in paragraph at lines 184--185
 \JY1/mc/m/n/12 ッ トワ ークへ入力することで人物識別を行 っ ている \OT1/cmr/m/n/
 12 [[]]\JY1/mc/m/n/12 ． 点群は \OT1/cmr/m/n/12 DBScan(Density-
  []
@@ -341,11 +341,11 @@ Overfull \hbox (21.76285pt too wide) in paragraph at lines 186--187
 [9]
 第 4 章
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 192.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 190.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 192.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 190.
 
-Overfull \hbox (4.49944pt too wide) in paragraph at lines 193--196
+Overfull \hbox (4.49944pt too wide) in paragraph at lines 191--194
 []\OT1/cmr/m/n/12 24 GHz \JY1/mc/m/n/12 ？ ド ッ プラ ーレ ーダを用いて取得した
 心拍信号に対し ， \OT1/cmr/m/n/12 STFT(Short
  []
@@ -357,92 +357,103 @@ Overfull \hbox (4.49944pt too wide) in paragraph at lines 193--196
 [14
 
 ]
+File: ./fig/distance01.png Graphic file (type bmp)
+<./fig/distance01.png>
+ [15]
 
-LaTeX Warning: Reference `fig:distance1' on page 15 undefined on input line 273
-.
+LaTeX Warning: Reference `fig:wave' on page 16 undefined on input line 284.
 
-
-LaTeX Warning: Reference `fig:wave' on page 15 undefined on input line 276.
-
-[15]
+[16]
 File: ./fig/comparison_raw_wavelet_ID01.png Graphic file (type bmp)
 <./fig/comparison_raw_wavelet_ID01.png>
-
-Overfull \hbox (2.00208pt too wide) in paragraph at lines 287--293
+ [17]
+Overfull \hbox (2.00208pt too wide) in paragraph at lines 295--301
 \JY1/mc/m/n/12 っ て学習が行われる ． 今回は時系列デ ータの学習に適した \OT1/cm
 r/m/n/12 InceptionTime[[]]
  []
 
-[16]
 File: ./fig/InceptionTime.png Graphic file (type bmp)
 <./fig/InceptionTime.png>
- [17]
+[18]
 File: ./fig/proposed_method.pdf Graphic file (type pdf)
 <./fig/proposed_method.pdf>
- [18] [19]
+ [19] [20]
 第 6 章
-File: ./fig/clean_dataset/cross_val_Fold0_close.png Graphic file (type bmp)
-<./fig/clean_dataset/cross_val_Fold0_close.png>
-[20
+[21
 
 ]
+File: ./fig/radar_setting_clean.png Graphic file (type bmp)
+<./fig/radar_setting_clean.png>
+ [22]
+File: ./fig/clean_dataset/cross_val_Fold0_close.png Graphic file (type bmp)
+<./fig/clean_dataset/cross_val_Fold0_close.png>
+ [23]
 
-LaTeX Warning: Reference `table:center_loss' on page 21 undefined on input line
- 354.
+LaTeX Warning: Reference `table:center_loss' on page 24 undefined on input line
+ 375.
 
-[21]
+[24]
 
-LaTeX Warning: Reference `fig:threshold' on page 22 undefined on input line 356
+LaTeX Warning: Reference `fig:threshold' on page 25 undefined on input line 377
 .
 
 File: ./fig/clean_dataset/cross_val_Fold0_threshold0.8_15_15.png Graphic file (
 type bmp)
 <./fig/clean_dataset/cross_val_Fold0_threshold0.8_15_15.png>
-[22] [23]
+[25] [26]
 
-LaTeX Warning: Reference `table:wavelet' on page 24 undefined on input line 387
+LaTeX Warning: Reference `table:wavelet' on page 27 undefined on input line 408
 .
 
 File: ./fig/noisy_dataset/cross_val_Fold0_close.png Graphic file (type bmp)
 <./fig/noisy_dataset/cross_val_Fold0_close.png>
-[24]
+[27]
 File: ./fig/noisy_dataset/cross_val_Fold0_threshold0.7_6_6.png Graphic file (ty
 pe bmp)
 <./fig/noisy_dataset/cross_val_Fold0_threshold0.7_6_6.png>
- [25] [26]
+ [28] [29]
 第 7 章
-[27
+[30
 
-] [28
-
-]
-LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 437.
-LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 448.
-LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 453.
- [29
+] [31
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 459.
+(Font)              No change on input line 468.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 464.
+(Font)              No change on input line 473.
+ [32
+
+]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 469.
+(Font)              No change on input line 479.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 478.
- [30]
+(Font)              No change on input line 484.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 492.
+(Font)              No change on input line 489.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 497.
+(Font)              No change on input line 498.
+ [33]
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 502.
- [31] [32]
+(Font)              No change on input line 512.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 517.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 522.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 527.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 532.
+ [34]
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 537.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 546.
+LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
+(Font)              No change on input line 551.
+ [35] [36]
 付 録 A  
-[33
+[37
 
 ] (./main.aux)
 
@@ -450,12 +461,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3382 strings out of 480241
- 53618 string characters out of 5895801
+ 3398 strings out of 480241
+ 54036 string characters out of 5895801
  347351 words of memory out of 5000000
- 21622 multiletter control sequences out of 15000+600000
+ 21636 multiletter control sequences out of 15000+600000
  486368 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,10n,62p,742b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (39 pages, 59132 bytes).
+Output written on main.dvi (43 pages, 64824 bytes).
