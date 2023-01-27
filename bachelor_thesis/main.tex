@@ -346,7 +346,6 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 
 ただし，$TP$はTrue Positive, $TN$はTrue Negative, $FP$はFalse Positive, $FN$はFalse Negativeである．
 
-CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関するグラフ, Wavelet Reconstructionの有無
 \section{ノイズの少ないデータセットについて}
 本節では，ノイズの少ないデータセットを用いて，図\ref{fig:proposed_method}から，Center Lossによって効果的に被験者が分類されることを示す．
 \subsection{実験諸元}
@@ -528,9 +527,43 @@ $\alpha$ (Center Loss) & 0.1 \\
 \label{fig:12open-conf}
 \end{figure}
 
-また、表\ref{table:wavelet}から，よりノイズが多く含まれる慶應病院のデータセットについて，ウェーブレット再構成を行った方がウェーブレット再構成を行わない場合，一般的なBPFの処理のみを行う場合よりも精度が大きく改善していることが分かる.
+\subsection{一般的な損失関数との比較}
+ノイズの少ないデータセットではCenter Lossが精度改善に寄与していることが分かったが，ノイズの多いデータセットでも改善が見られるかどうかを調べた．結果を表\ref{table:comparison_loss_HCU}に示す．表から，精度が1.6\%改善しており，データセットが変わった場合にもCenter Lossは精度改善に寄与することが確認できた．このとき，どちらの手法についても前処理にはBPFを用いている．
 
-表\ref{table:center_loss}から，Center Lossが一般的に分類タスクに用いられるCross Entropy Lossと比較して，精度が向上していることが分かる．
+\begin{table}[H]
+  \caption{損失関数を変更した場合の比較}
+  \centering
+  \begin{tabular}{cccc}
+  \hline
+  環境 & 手法 & 既知/未知の人数 & 精度 \\
+  \hline
+  オープンセット & Cross Entropy Loss & 6/6 & 45.69\% \\
+  & Center Loss & 6/6 & 47.27\% \\
+  \hline
+  \end{tabular}
+  \label{table:comparison_loss_HCU}
+\end{table}
+
+\subsection{ウェーブレット再構成の有効性の評価}
+続いて，ウェーブレット再構成が精度改善にどれほど寄与しているかを述べる．表\ref{table:comparison_wavelet}に，ウェーブレット再構成の有無，一般的な前処理であるBPFを用いた場合の比較を示す．表から，ウェーブレット再構成を前処理に導入した提案法が最も高い精度を達成していることが分かる．表の1行目の空欄は，図\ref{fig:wave}で示したウェーブレット再構成を行わない場合の胸壁変位波形をそのままCNNの入力に使用したことを示している．
+
+\begin{table}[H]
+  \caption{前処理を変更した場合の比較}
+  \centering
+  \begin{tabular}{cccc}
+  \hline
+  環境 & 手法 & 既知/未知の人数 & 精度 \\
+  \hline
+  クローズセット &  & (12/0) & 18.21\% \\
+  & BPF & (12/0) & 47.27\% \\
+  & 提案法(ウェーブレット再構成) & (12/0) & 78.02\% \\
+  \hline
+  \end{tabular}
+  \label{table:comparison_wavelet}
+\end{table}
+
+\section{Threshold, Opennessによる精度の変化}
+
 
 Opennessを変化させていくと，図\ref{fig:threshold}より、未知のクラスと判断するためのしきい値を変化させていった場合に、0.7?で精度が最大となりその後劣化していく事がわかる。これは、最大化するまでは未知のクラスを既知のクラスと間違い、その後は既知のクラスを未知のクラスと間違えているためである。既知のクラスの学習がうまくいっているほど、しきい値が高くなるにつれて
 
