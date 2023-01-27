@@ -288,6 +288,7 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 \includegraphics[width=\linewidth]{./fig/comparison_raw_wavelet_ID01.png}
 \end{center}
 \caption{ウェーブレット再構成適用前と適用後の波形の比較}
+\label{fig:wave}
 \end{figure}
 
 所望の信号を得られたら，次にセグメンテーションを行う．詳細な諸元については第6章で述べるが，セグメントのウィンドウ長は5秒，隣り合うセグメントとのオーバーラップは1.5秒とした．
@@ -299,7 +300,7 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 また，ResNet\cite{paper:ResNet}に代表される残差接続を採用している点も大きな特徴の1つである．
 このような構造を持つため，InceptionTimeは時系列データの特徴を最大限に抽出可能である．
 
-損失関数にはSoftmax LossとCenter Lossを採用しており，以下のように定式化される\cite{paper:centerloss}．
+損失関数にはSoftmax LossとCenter Lossの和$L_{Total}$を採用しており，以下のように定式化される\cite{paper:centerloss}．
 \begin{equation}{L_{{\text{Softmax }}}} = \frac{1}{N}\sum\limits_{i = 1}^N 1 - \log \frac{{{e^{\left\| {{{\mathbf{w}}_{yi}}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _{yi}} + {{\mathbf{b}}_{yi}}}}}}{{\sum\limits_{j = 1}^C {{e^{\left\| {{{\mathbf{w}}_j}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _j} + {{\mathbf{b}}_j}}}} }}\tag{1}\end{equation}
 
 \begin{equation}{L_{{\text{Center }}}} = \frac{1}{2}\sum\limits_{i = 1}^N {{{\left\| {{\mathbf{x}}_i^j - {{\mathbf{c}}^j}} \right\|}_2}} ,(j = 1,2, \ldots ,C)\tag{2}\end{equation}
@@ -326,10 +327,23 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 \end{figure}
 
 \chapter{実験評価}
+本章では実験結果を示し，その評価を述べる．
+評価指標として精度(Accuracy)を用いる．
+精度は以下のように定義される．
+
+\begin{equation}\label{}
+\mathrm{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+ただし，$TP$はTrue Positive, $TN$はTrue Negative, $FP$はFalse Positive, $FN$はFalse Negativeである．
+
 CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関するグラフ, Wavelet Reconstructionの有無
 \section{ノイズの少ないデータセットについて}
-エルランゲン大学病院にて24GHz 6ポート CW(Continuous Wave)レーダーで収集された健康な30人の被験者で構成されるデータセットを使用し\cite{paper:30-dataset}．データセットの内容は表\ref{table:30-dataset}のようになる．サンプリングレートは学習の段階で2000 Hzから250 Hzにリサンプリングして使用した．
+ノイズの少ないデータセットでは図\ref{fig:proposed_method}から，Center Lossによって効果的に被験者が分類されることを示す．
+\subsection{実験諸元}
+エルランゲン大学病院にて24GHz 6ポート CW(Continuous Wave)レーダで収集された健康な30人の被験者で構成される公開データセットを使用した\cite{paper:30-dataset}．データセットの内容は表\ref{table:30-dataset}のようになる．サンプリングレートは学習の段階で2000 Hzから250 Hzにリサンプリングして使用した．
 また，実際にレーダで被験者の心拍信号を測定する様子を図\ref{fig:setting_clean}に示す．レーダから被験者の身体表面までの距離は約40cmに設定されている．
+実験を行った際のハイパーパラメータを表\ref{table:30-parameter}に示す．モデルのオプティマイザにはAdam(Adaptive moment)を使用した．Center Lossで使用するオプティマイザにはSGD(Stochastic Gradient Descent)を使用した．
 
 \begin{table}[H]
 \caption{エルランゲン大学で測定された心拍データセットの諸元}
@@ -342,12 +356,30 @@ CrossEntropy vs Center Loss，Thresholdの変化，Opennessの変化に関する
 身長 (cm) & 175.7 $\pm$ 10.5 \\
 体重 (kg) & 72.2 $\pm$ 14.0 \\
 BMI & 23.2 $\pm$ 3.3 \\
-サンプリングレート & 2000 Hz \\
+サンプリングレート (Hz) & 2000 \\
 シナリオ & 休息 \\
 平均計測時間 (秒) & 2882 \\
 \hline
 \end{tabular}
 \label{table:30-dataset}
+\end{table}
+
+\begin{table}[H]
+\caption{ハイパーパラメータ}
+\centering
+\begin{tabular}{cc}
+\hline
+被験者クラス数 & 30 \\
+エポック数 & 300 \\
+バッチサイズ & 64 \\
+学習率 & 0.0001 \\
+ウィンドウ (秒) & 5.0 \\
+オーバーラップ (秒) & 1.5 \\
+$\alpha$ (Center Loss) & 0.1 \\
+学習率 (Center Loss) & 0.05 \\
+\hline
+\end{tabular}
+\label{table:30-parameter}
 \end{table}
 
 \begin{figure}[H]
@@ -358,20 +390,17 @@ BMI & 23.2 $\pm$ 3.3 \\
 \label{fig:setting_clean}
 \end{figure}
 
-\subsection{クローズセット環境}
-\subsubsection{実験諸元}
-\subsubsection{実験結果}
-
+\subsection{クローズセット環境下における実験結果}
+クローズセット環境でCenter Lossを採用した提案手法は99.94\%の精度を達成した．図\ref{fig:30close-conf}に10倍交差検証を行った内の混同行列の例を示す．
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\linewidth]{./fig/clean_dataset/cross_val_Fold0_close.png}
 \end{center}
-\caption{title}
+\caption{30人の被験者の分類，ノイズの少ないデータセットでクローズセット環境の場合}
+\label{fig:30close-conf}
 \end{figure}
 
-\subsection{オープンセット環境}
-\subsubsection{実験諸元}
-\subsubsection{実験結果}
+\subsection{オープンセット環境下における実験結果}
 表\ref{table:center_loss}から，Center Lossが一般的に分類タスクに用いられるCross Entropy Lossと比較して，精度が向上していることが分かる．
 
 Opennessを変化させていくと，図\ref{fig:threshold}より、未知のクラスと判断するためのしきい値を変化させていった場合に、0.7?で精度が最大となりその後劣化していく事がわかる。これは、最大化するまでは未知のクラスを既知のクラスと間違い、その後は既知のクラスを未知のクラスと間違えているためである。既知のクラスの学習がうまくいっているほど、しきい値が高くなるにつれて
@@ -385,26 +414,26 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
 
 
 \section{ノイズの多いデータセットについて}
-慶應大学病院で収集された12人の被験者で構成されるデータセットを使用した．データセットの内容は表\ref{table:keio_hospital}
+\subsection{実験諸元}
+慶應大学病院で収集された12人の被験者で構成される非公開データセットを使用した．データセットの内容は表\ref{table:keio_hospital}の通りである．サンプリングレートは学習の段階で1000 Hzから250 Hzにリサンプリングして使用した．シナリオは休息であるものの，生データからは，体動等が原因と思われるノイズが確認されている．
 
 \begin{table}[H]
-  \caption{慶應大学心拍信号の諸元}
+  \caption{慶應大学病院で計測されたレーダ心拍信号の諸元}
   \centering
   \begin{tabular}{cc}
   \hline
   被験者数 & 12 \\
-  エポック数 & 4 \\
-  学習率 & 79 GHz \\
-  $\alpha$ & 3.4391 GHz \\
-  サンプリングレート & 250 Hz \\
+  被験者との水平距離 (cm) & 35.7 $\pm$ 19.5 \\
+  被験者との垂直距離 (cm) & 146.1 $\pm$ 7.1 \\
+  サンプリングレート & 1000 Hz \\
+  シナリオ & 休息 \\
   \hline
   \end{tabular}
   \label{table:keio_hospital}
   \end{table}
 
-\subsection{クローズセット環境}
-\subsubsection{実験諸元}
-\subsubsection{実験結果}
+\subsection{クローズセット環境下における実験結果}
+
 また、表\ref{table:wavelet}から，よりノイズが多く含まれる慶應病院のデータセットについて，ウェーブレット再構成を行った方がウェーブレット再構成を行わない場合，一般的なBPFの処理のみを行う場合よりも精度が大きく改善していることが分かる.
 
 \begin{figure}[H]
@@ -414,9 +443,8 @@ Opennessを変化させていくと，図\ref{fig:threshold}より、未知の�
 \caption{title}
 \end{figure}
 
-\subsection{オープンセット環境}
-\subsubsection{実験諸元}
-\subsubsection{実験結果}
+\subsection{オープンセット環境下における実験諸元}
+
 \begin{figure}[H]
   \begin{center}
   \includegraphics[width=\linewidth]{./fig/noisy_dataset/cross_val_Fold0_threshold0.7_6_6.png}
