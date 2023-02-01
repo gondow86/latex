@@ -47,8 +47,8 @@
 \jid		{61908013}						% 学籍番号
 \jadvisor	{大 槻 知 明}{教 授}					% 指導教官、形式は『{名前}{肩書}』
 \jsubmit	{令和 5 年 2 月 3 日}
-\jhyear		{5}							% 平成○年度
-\jsyear		{2023}							% 西暦○年度
+\jhyear		{4}							% 平成○年度
+\jsyear		{2022}							% 西暦○年度
 \jkeyword	{オープンセット，Center Loss，ウェーブレット再構成}		% 論文のキーワード
 
 
@@ -64,7 +64,7 @@
 レーダによって取得された心拍や呼吸信号を用いた認証は，非接触で実行可能であること，プライバシーが保護されること，対象人物の無意識下で継続的な認証ができる可能性から注目を集めている．
 多くの研究がテスト時に未知の人物を含まないクローズセット環境で行われているが，本研究では，実世界の条件に即したオープンセット環境下で人物識別の精度を高める手法を提案する．
 
-提案法では，心拍により発生する胸壁変位信号を入力であり，1次元のCNN(Convolutional Neural Network)で人物に固有の特徴を抽出する．損失関数にSoftmax LossとCenter Lossを採用することで，モデルは特徴量空間におけるマッピングが，容易にクラスごとに分離可能になるよう学習されていく．提案法は従来法の精度をクローズセット，オープンセットの両方で凌駕した．
+提案法では，心拍により発生する胸壁変位信号を入力とし，1次元のCNN(Convolutional Neural Network)で人物に固有の特徴を抽出する．損失関数にSoftmax LossとCenter Lossを採用することで，モデルは特徴量空間におけるマッピングが，容易にクラスごとに分離可能になるよう学習されていく．提案法は従来法の精度をクローズセット，オープンセットの両方で凌駕した．
 またウェーブレット再構成を導入し，提案法がよりノイズの多いデータについても対応できる可能性を示した．
 
 
@@ -97,7 +97,7 @@
 そこで本研究では，オープンセット環境下におけるレーダ心拍信号を用いた人物識別を行う．ここではオープンセット環境を，既知の人物のクラス数を$N$として，未知の人物であるというクラスを1つ加えた$N+1$個のクラスでの識別と定義する．
 
 % \textcolor{red}{Opennessの定義}
-またここで，Openness指数を定義する．$C_{train}$と$C_{test}$をそれぞれトレーニングセットとテストセットにおける被験者のクラス数である．Openness指数は，テスト時にモデルがどの程度の未知のクラスに遭遇するのかを定量化するために使用され，一般的にはこの指数が高いほど，分類問題は困難になる\cite{paper:HeartSignature}
+またここで，Openness指数を定義する．$C_{train}$と$C_{test}$をそれぞれトレーニングセットとテストセットに含まれる被験者のクラス数である．Openness指数は，テスト時にモデルがどの程度の未知のクラスに遭遇するのかを定量化するために使用され，一般的にはこの指数が高いほど，分類問題は困難になる\cite{paper:HeartSignature}．
 \begin{equation}\label{}
   openness = 1 - \sqrt{\frac{C_{train}}{C_{test}}}
 \end{equation}
@@ -155,7 +155,7 @@ LPF(Low Pass Filter)で前処理されたECG信号は，Rピークごとに周�
 
 \section{呼吸信号を基にした人物識別}
 Islamらは，ドップラーレーダで取得した呼吸による，SVM(Support Vector Machine)による認証システムとして人物識別を行った\cite{paper:respi_svm}．彼らはSVMを動径基底関数カーネル分類と統合することで，非線形な問題の決定境界を学習可能とした．入力を被験者の呼吸パターンのFFT(Fast Fourier Transform)としており，既存の吸気と呼気のパターンに基づいて人物識別をする動的セグメンテーションの手法\cite{paper:dynamic1}\cite{paper:dynamic2}の精度を凌駕した．
-さらに，Islamらは上記の研究と同様にSVMを用いるが，異なる特徴量を採用した研究を発表しており，その研究では5種の特徴量が用いられている．特徴量を表\ref{table:respi}
+さらに，Islamらは上記の研究と同様にSVMを用いるが，異なる特徴量を採用した研究を発表しており，その研究では5種の特徴量が用いられている．特徴量を表\ref{table:respi}に示す．
 
 \begin{table}[H]
 \caption{使用された5つの特徴量}
@@ -186,7 +186,7 @@ Zhaoらは，FMCWレーダを用いて適用可能な範囲内の人間の点群
 
 \section{心拍信号のスペクトログラムを用いた深層学習による人物識別\cite{paper:HeartID}}
 \subsection{手法}
-24 GHz?ドップラーレーダを用いて取得した心拍信号に対し，STFT(Short Time Fourier Transform)を実行して得たスペクトログラムが入力である．
+24 GHzドップラーレーダを用いて取得した心拍信号に対し，STFT(Short Time Fourier Transform)を実行して得たスペクトログラムが入力である．
 そして，時間軸と周波数軸で表現された特徴量をAlexNetを基にしたDCNN(Deep Convolutional Neural Network)で抽出し，4人の人物識別をクローズセット環境下で行った．
 \cite{paper:HeartID}では，人物識別における深層学習の有用性を示している．比較手法として，SVM(Support Vector Machine), Naive Bayes, そしてそれらを組み合わせた手法のSVM-Bayesが挙げられており，用いられた手動の特徴量は以下の三種である．一つ目は，心拍信号の周期，二つ目は心拍信号のエネルギー，三つ目はドップラー信号の帯域幅である．
 
@@ -215,7 +215,7 @@ Naive Bayes & 80.75\% \\
 手動の特徴量ではなく，1次元のCNN(Convolutional Neural Network)を用いて特徴量を抽出して分類に使用する．
 それらの特徴量はユークリッド距離をベースとした損失関数を通してネットワークに学習される．各クラスにそれぞれ双極子が設定されており，損失関数はそれらの双極子とマッピングされた特徴量との距離が主な要素となっている．
 これらの損失関数は，各クラスに距離ベースの類似性を与え，従来の関数よりも特徴量空間上でクラスがより分離可能な分布とするはたらきがある．
-また，双極子自体の分布も学習により調整され，抽出された特徴量とは敵対的学習の形をとる．識別の際にも双極子は使用され，ある心拍セグメントの潜在表現がクラスAの正極から閾値以上の距離があるか，負極から閾値以下の距離に存在する場合に，その心拍セグメントはクラスAと識別される．以上のように提案されたアーキテクチャは，オープンセット環境下で，学習に使用していない未知のデータに対しても対応できるように考案されたものである．
+また，双極子自体の分布も学習により調整され，抽出された特徴量とは敵対的学習の形をとる．識別の際にも双極子は使用され，ある心拍セグメントの潜在表現がクラスAの正極からしきい値以上の距離があるか，負極からしきい値以下の距離に存在する場合に，その心拍セグメントはクラスAと識別される．以上のように提案されたアーキテクチャは，オープンセット環境下で，学習に使用していない未知のデータに対しても対応できるように考案されたものである．
 
 \subsection{実験結果}
 実験では，クローズセット環境下とオープンセット環境下の2つの状態で評価が行われた．
@@ -237,7 +237,7 @@ Naive Bayes & 80.75\% \\
 
 \section{心拍信号を基にした，転移学習と2つのモデルを用いたオープンセット環境下における人物識別\cite{paper:Xing}}
 \subsection{手法}
-本研究と同様の公開データセットに含まれる，心拍信号セグメントを用いて人物識別を行っている研究である．2種のモデルと分類器を用いて最終的な識別を行っているのが特徴であり，一方のモデルでは分類器はSoftMaxだが，もう一方のモデルではオープンセットの分類に適したOpenMax\cite{}という分類器が用いられている．このOpenMaxはテストデータ中に含まれる未知のクラスを識別することに貢献している．2つのモデルはECGのデータセットで事前学習されたものを，さらにレーダ心拍信号を用いてキャリブレーションして学習を行っている．
+本研究と同様の公開データセットに含まれる，心拍信号セグメントを用いて人物識別を行っている研究である．2種のモデルと分類器を用いて最終的な識別を行っているのが特徴であり，一方のモデルでは分類器はSoftMaxだが，もう一方のモデルではオープンセットの分類に適したOpenMax\cite{paper:openmax}という分類器が用いられている．このOpenMaxはテストデータ中に含まれる未知のクラスを識別することに貢献している．2つのモデルはECGのデータセットで事前学習されたものを，さらにレーダ心拍信号を用いてキャリブレーションして学習を行っている．
 クラスを識別する際には，2つの分類器から出力された確率のスコアを組み合わせることでより高い精度の識別に成功している．
 
 \subsection{実験結果}
@@ -262,12 +262,13 @@ Naive Bayes & 80.75\% \\
 \chapter{提案法}
 \section{従来法の問題点と提案法}
 従来法\cite{paper:HeartID}では，STFTを用いた時間-周波数画像(ヒートマップ)を入力としたCNNによる分類が提案されているが，STFTの弱点として，特徴量が画像に変換される際に失われてしまう点にあると考えられる．
-従来法\cite{paper:HeartSignature}, \cite{papar:Xing}では，損失関数やクラスの識別方法に複雑なアーキテクチャを採用し，高い識別精度を達成しているものの，オープンセット環境下ではクローズセット環境に比べて精度が劣化してしまっているという問題がある．これは，各クラスの特徴量空間におけるマッピングが互いに近すぎるが故に，未知の被験者を既知の被験者と誤って（逆も然り）判断してしまっているためであると考えられる．
+従来法\cite{paper:HeartSignature}, \cite{paper:Xing}では，損失関数やクラスの識別方法に複雑なアーキテクチャを採用し，高い識別精度を達成しているものの，オープンセット環境下ではクローズセット環境に比べて精度が劣化してしまっているという問題がある．これは，各クラスの特徴量空間におけるマッピングが互いに近すぎるが故に，未知の被験者を既知の被験者と誤って（逆も然り）判断してしまっているためであると考えられる．
 
 そこで本研究では，損失関数にSoftmax lossとCenter lossを用いることでクラス内分散を最小化しつつ，クラス間分散を最大化させ，オープンセット環境下でも精度が劣化しにくいモデルを提案する．さらに，ノイズの多いデータセットについても検討を行い，ウェーブレット再構成を導入することでノイズの多いデータに対しても効果的に識別ができることを示す．
 
 \section{提案法のアルゴリズム}
-提案法のアルゴリズムを図\ref{fig:proposed_method}に示す．
+提案法のアルゴリズムを図\ref{fig:proposed_method}に示す．ノイズの少ないデータセットについては分岐Aが，ノイズの多いデータセットについては分岐Bが適用される．
+
 本提案では，6ポートのドップラーレーダで取得したI/Qデータを用いた．
 I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以外に，体動やI/Qチャネル間の振幅と位相の不均衡に起因するノイズが含まれている.
 
@@ -283,6 +284,14 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 そうして得られた胸壁変位波形の例を図\ref{fig:distance1}に示す．横軸はサンプリングされたポイントの数，縦軸は正規化された後の振幅をそれぞれ示している．
 
 \begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.5\linewidth]{./fig/proposed_method.pdf}
+  \end{center}
+  \caption{提案法のアルゴリズム}
+  \label{fig:proposed_method}
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=\linewidth]{./fig/distance01.png}
 \end{center}
@@ -292,7 +301,7 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 
 本稿では，ノイズの少ないデータセットとノイズの多いデータセットの2つを使用するが，後者の場合には次に説明をするウェーブレット再構成を行う．
 ドップラーレーダで得た心拍信号やECG(Electrocardiogram)からノイズ除去をするための手法の中で，いくつかの研究でウェーブレット再構成が使用されている\cite{paper:de-noise_technique, paper:dengue, paper:ecg_noise_removal}．
-後者のデータセット中の胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切な閾値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．今回はレベルを8，マザーウェーブレットをDaubechies8とした．閾値処理では，最も高周波な成分を0として取り除いた．図\ref{fig:wave}に被験者番号1の胸壁変位波形に対し，ウェーブレット再構成を適用する前後の波形の例を示す．横軸はサンプリングされたポイントの数，縦軸は正規化された後の振幅をそれぞれ示している．ウェーブレット再構成を適用した後の波形は，高周波のノイズが取り除かれていることが確認できる．
+後者のデータセット中の胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切なしきい値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．今回はレベルを8，マザーウェーブレットをDaubechies8とした．しきい値処理では，最も高周波な成分を0として取り除いた．図\ref{fig:wave}に被験者番号1の胸壁変位波形に対し，ウェーブレット再構成を適用する前後の波形の例を示す．横軸はサンプリングされたポイントの数，縦軸は正規化された後の振幅をそれぞれ示している．ウェーブレット再構成を適用した後の波形は，高周波のノイズが取り除かれていることが確認できる．
 
 \begin{figure}[H]
 \begin{center}
@@ -312,13 +321,18 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 このような構造を持つため，InceptionTimeは時系列データの特徴を最大限に抽出可能である．
 
 損失関数にはSoftmax LossとCenter Lossの和$L_{Total}$を採用しており，以下のように定式化される\cite{paper:centerloss}．
-\begin{equation}{L_{{\text{Softmax }}}} = \frac{1}{N}\sum\limits_{i = 1}^N 1 - \log \frac{{{e^{\left\| {{{\mathbf{w}}_{yi}}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _{yi}} + {{\mathbf{b}}_{yi}}}}}}{{\sum\limits_{j = 1}^C {{e^{\left\| {{{\mathbf{w}}_j}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _j} + {{\mathbf{b}}_j}}}} }}\tag{1}\end{equation}
-
-\begin{equation}{L_{{\text{Center }}}} = \frac{1}{2}\sum\limits_{i = 1}^N {{{\left\| {{\mathbf{x}}_i^j - {{\mathbf{c}}^j}} \right\|}_2}} ,(j = 1,2, \ldots ,C)\tag{2}\end{equation}
-
+\begin{equation}\label{eq:softmax}
+  {L_{{\text{Softmax }}}} = \frac{1}{N}\sum\limits_{i = 1}^N 1 - \log \frac{{{e^{\left\| {{{\mathbf{w}}_{yi}}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _{yi}} + {{\mathbf{b}}_{yi}}}}}}{{\sum\limits_{j = 1}^C {{e^{\left\| {{{\mathbf{w}}_j}} \right\|*\left\| {{{\mathbf{x}}_i}} \right\|*\cos {\theta _j} + {{\mathbf{b}}_j}}}} }}
+\end{equation}
+\begin{equation}\label{eq:center}
+  {L_{{\text{Center }}}} = \frac{1}{2}\sum\limits_{i = 1}^N {{{\left\| {{\mathbf{x}}_i^j - {{\mathbf{c}}^j}} \right\|}_2}} ,(j = 1,2, \ldots ,C)
+\end{equation}
 \begin{equation}{L_{{\text{Total }}}} = {L_{{\text{Softmax }}}} + \alpha {L_{{\text{Center }}}}\end{equation}
 
-1次元CNNの最終層にはSoftmax層があるが，Softmax層は既知の$N$クラスにしかセグメントを分類することはできない．そこでオープンセット環境下では，Softmax-Thresholdという手法を採用し，これは，Softmaxの出力がある閾値以下であった場合にはその出力を未知のクラスに分類する方法である．
+式\ref{eq:softmax}において$w_{j} , w_{yi}, b_{j} , b_{yi}$はネットワークの最後の全結合層の重み行列とバイアス項、$\theta_{j}$は高次元空間における重みベクトルと特徴ベクトルの間の角度である．Softmax Lossはネットワークの出力が正解ラベルと近い分布になるようにし，クラス間分散を最大化させる．
+式\ref{eq:center}において、$N$は$j$番目のクラスのサンプル数、$x^{j}_{i}$は$j$番目のクラスに属する$i$番目のサンプル、$c_j$は$j$番目のクラスの中心であることを表している．Center Lossは各クラスの中心を計算し，その周辺に同じクラスの特徴量を拘束することでクラス内分散を最小化する．
+
+1次元CNNの最終層にはSoftmax層があるが，Softmax層は既知の$N$クラスにしかセグメントを分類することはできない．そこでオープンセット環境下では，Softmax-Thresholdという手法を採用し，これは，Softmax出力の最大値があるしきい値以下であった場合にはその出力を未知のクラスに分類する方法である．
 
 
 \begin{figure}[H]
@@ -327,14 +341,6 @@ Inceptionモジュールは，様々な大きさの畳み込み層とmaxプー�
 \end{center}
 \caption{InceptionTimeの構造概要}
 \label{fig:InceptionTime}
-\end{figure}
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.5\linewidth]{./fig/proposed_method.pdf}
-\end{center}
-\caption{提案法のアルゴリズム}
-\label{fig:proposed_method}
 \end{figure}
 
 \chapter{実験評価}
@@ -467,7 +473,7 @@ $\alpha$ (Center Loss) & 0.1 \\
 
 
 \section{ノイズの多いデータセットについて}
-本節では，ノイズの多いデータセットについて，図\ref{fig:proposed_method}より，Center Lossに加えて前処理にウェーブレット再構成によるノイズ除去を行うことで，提案手法が拡張されることを示す．
+本節では，ノイズの多いデータセットについて，図\ref{fig:proposed_method}のBのアルゴリズムを適用し，Center Lossに加えて前処理にウェーブレット再構成によるノイズ除去を行うことで，提案手法が拡張されることを示す．
 \subsection{実験諸元}
 慶應大学病院で収集された12人の被験者で構成される非公開データセットを使用した．データセットの内容は表\ref{table:keio_hospital}の通りである．サンプリングレートは学習の段階で1000 Hzから250 Hzにリサンプリングして使用した．シナリオは休息であるものの，生データからは，体動等が原因と思われるノイズが確認されている．実験を行った際のハイパーパラメータを表\ref{table:12-parameter}に示す．モデルとCenter Lossのオプティマイザはノイズの少ないデータセットの場合と同様で，それぞれAdamとSGDである．
 
@@ -506,12 +512,12 @@ $\alpha$ (Center Loss) & 0.1 \\
 \end{table}
 
 \subsection{クローズセット環境下における実験結果}
-クローズセット環境でCenter Lossとウェーブレット再構成を採用した提案手法は78.02\%の精度を達成した．図\ref{fig:12close-conf}に10分割交差検証を行った内の混同行列の例を示す．
+クローズセット環境でCenter Lossとウェーブレット再構成を採用した提案手法は84.80\%の精度を達成した．図\ref{fig:12close-conf}に10分割交差検証を行った内の混同行列の例を示す．
 
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\linewidth]{./fig/noisy_dataset/cross_val_Fold0_close.png}
+\includegraphics[width=\linewidth]{./fig/noisy_dataset/cross_val_Fold0_close_level6.png}
 \end{center}
 \caption{12人の被験者の分類，ノイズの多いデータセットでクローズセット環境の場合}
 \label{fig:12close-conf}
@@ -700,6 +706,11 @@ Thresholdを変化させていくと，図\ref{fig:threshold}より，エルラ�
 Baiju Yan, Hao Zhang, Yicheng Yao, Changyu Liu, Pu Jian, Peng Wang, Lidong Du, Xianxiang Chen, Zhen Fang, Yirong Wu
 \newblock Heart signatures: Open-set person identification based on cardiac radar signals
 \newblock {\it Biomedical Signal Processing and Control}, Vol. 72, 2022
+
+\bibitem{paper:openmax}
+Giusti E, Ghio S, Oveis AH, Martorella M. 
+\newblock Proportional Similarity-Based Openmax Classifier for Open Set Recognition in SAR Images
+\newblock {\it Remote Sensing}, Vol. 14, No. 18, 2022
 
 \bibitem{paper:Xing}
   Zelin Xing, Mondher Bouazizi, Tomoaki Ohtsuki
