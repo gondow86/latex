@@ -96,14 +96,9 @@
 レーダで取得した心拍や呼吸といった生体信号を用いた従来の人物識別研究の多くは，テスト時に未知の人物が含まれないクローズセット環境下における評価をしており，テスト時に未知の人物が含まれるオープンセット環境下での評価を行っていない．
 そこで本研究では，オープンセット環境下におけるレーダ心拍信号を用いた人物識別を行う．ここではオープンセット環境を，既知の人物のクラス数を$N$として，未知の人物であるというクラスを1つ加えた$N+1$個のクラスでの識別と定義する．
 
-% \textcolor{red}{Opennessの定義}
-またここで，Openness指数を定義する．$C_{train}$と$C_{test}$をそれぞれトレーニングセットとテストセットに含まれる被験者のクラス数である．Openness指数は，テスト時にモデルがどの程度の未知のクラスに遭遇するのかを定量化するために使用され，一般的にはこの指数が高いほど，分類問題は困難になる\cite{paper:HeartSignature}．
-\begin{equation}\label{}
-  openness = 1 - \sqrt{\frac{C_{train}}{C_{test}}}
-\end{equation}
 
 \section{目的}
-本論文では，Center Lossとウェーブレット再構成を用いた提案アルゴリズムの人物識別における有用性を示すことを目指す．
+本論文では，Center Lossとウェーブレット再構成を用いて，オープンセット環境下における提案アルゴリズムの人物識別の精度改善，ノイズの多いデータセットに対しても高い精度を達成することを目指す．
 
 \section{本文書の構成}
 本論文は次のように構成される．
@@ -301,14 +296,22 @@ I/Qデータには心拍信号や呼吸信号に起因する胸壁の変位以�
 
 本稿では，ノイズの少ないデータセットとノイズの多いデータセットの2つを使用するが，後者の場合には次に説明をするウェーブレット再構成を行う．
 ドップラーレーダで得た心拍信号やECG(Electrocardiogram)からノイズ除去をするための手法の中で，いくつかの研究でウェーブレット再構成が使用されている\cite{paper:de-noise_technique, paper:dengue, paper:ecg_noise_removal}．
-後者のデータセット中の胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切なしきい値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．今回はレベルを8，マザーウェーブレットをDaubechies8とした．しきい値処理では，最も高周波な成分を0として取り除いた．図\ref{fig:wave}に被験者番号1の胸壁変位波形に対し，ウェーブレット再構成を適用する前後の波形の例を示す．横軸はサンプリングされたポイントの数，縦軸は正規化された後の振幅をそれぞれ示している．ウェーブレット再構成を適用した後の波形は，高周波のノイズが取り除かれていることが確認できる．
+後者のデータセット中の胸壁変位信号には，レーダのキャリブレーションを含む高周波ノイズが含まれている．信号に対しウェーブレット変換を行うと，ウェーブレット係数を得ることができる．そしてそれらの係数に適切なしきい値処理を施したあとに逆ウェーブレット変換を行うことで，ノイズが除去された信号を得ることが可能である．パラメータを変えながら実験を行い，レベルを6，マザーウェーブレットはDaubechies8とした．Daubechiesは，ECGやレーダ信号のノイズ除去に適したマザーウェーブレットである\cite{paper:daubechies1, paper:daubechies2}．しきい値処理では，最も低周波な成分を0として取り除いた．図\ref{fig:wave}に被験者番号1の胸壁変位波形に対し，ウェーブレット再構成を適用する前後の波形の例を示す．横軸は時間，縦軸は正規化された後の振幅をそれぞれ示している．ウェーブレット再構成を適用した後の波形は，左図からは体動等の影響と考えられる低周波ノイズが低減され，右図からはキャリブレーションの影響による波形のジャンプが除去されていることが確認できる．
 
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\linewidth]{./fig/comparison_raw_wavelet_ID01.png}
-\end{center}
-\caption{ウェーブレット再構成適用前と適用後の波形の比較}
-\label{fig:wave}
+\begin{figure}[htbp]
+  \begin{minipage}[c]{0.5\hsize}
+    \centering
+    \includegraphics[width=\linewidth]{./fig/comparison_wavelet_1second.png}
+    \caption{ウェーブレット再構成適用前と適用後の1秒間の波形の比較}
+  %   \label{fig:statue}
+  \end{minipage}
+  \begin{minipage}[c]{0.5\hsize}
+    \centering
+    \includegraphics[width=\linewidth]{./fig/comparison_wavelet_900second.png}
+    \caption{ウェーブレット再構成適用前と適用後の900秒間の波形の比較}
+  %   \label{fig:spaceship}
+  \end{minipage}
+  \label{fig:wave}
 \end{figure}
 
 所望の信号を得られたら，次にセグメンテーションを行う．詳細な諸元については第6章で述べるが，セグメントのウィンドウ長は5秒，隣り合うセグメントとのオーバーラップは1.5秒とした．
@@ -564,14 +567,21 @@ $\alpha$ (Center Loss) & 0.1 \\
   \hline
   クローズセット &  & (12/0) & 18.21\% \\
   & BPF & (12/0) & 47.27\% \\
-  & 提案法(ウェーブレット再構成) & (12/0) & 78.02\% \\
+  & 提案法(ウェーブレット再構成) & (12/0) & 84.80\% \\
   \hline
   \end{tabular}
   \label{table:comparison_wavelet}
 \end{table}
 
 \section{Threshold, Opennessによる精度の変化}
-本節では2つのデータセットでOpennessによって精度がどう変化していくか，またSoftmax-Thresholdのしきい値によって精度がどう変化していくか述べる．図\ref{fig:openness}と図\ref{fig:threshold}に精度のしきい値による変化とOpennessによる変化のグラフを示した．
+本節では2つのデータセットでOpennessによって精度がどう変化していくか，またSoftmax-Thresholdのしきい値によって精度がどう変化していくか述べる.
+
+ここで，Openness指数を定義する．$C_{train}$と$C_{test}$をそれぞれトレーニングセットとテストセットに含まれる被験者のクラス数である．Openness指数は，テスト時にモデルがどの程度の未知のクラスに遭遇するのかを定量化するために使用され，一般的にはこの指数が高いほど，分類問題は困難になる\cite{paper:HeartSignature}．
+\begin{equation}\label{}
+  openness = 1 - \sqrt{\frac{C_{train}}{C_{test}}}
+\end{equation}
+
+図\ref{fig:openness}と図\ref{fig:threshold}に精度のしきい値による変化とOpennessによる変化のグラフを示した．
 
 Opennessを変化させていくと，図\ref{fig:openness}より，エルランゲン大学のデータセットは精度がほとんど100\%に上ずっていて変化が見られないが，慶應病院のデータセットではOpennessが上がっていくことで精度が劣化していき，問題が難しくなっていることが読み取れる．
 
@@ -642,6 +652,11 @@ Thresholdを変化させていくと，図\ref{fig:threshold}より，エルラ�
   \newblock Respiratory feature extraction for radar-based continuous identity authentication
   \newblock {\it 2020 IEEE Radio and Wireless Symposiun (RWS)}. pp. 119-122, 2020.
   
+  \bibitem{paper:unsupervised}
+  Y. Yang, X. Yang, T. Sakamoto, F. Fioranelli, B. Li and Y. Lang
+  \newblock Unsupervised Domain Adaptation for Disguised-Gait-Based Person Identification on Micro-Doppler Signatures
+  \newblock {\it IEEE Transactions on Circuits and Systems for Video Technology}, vol. 32, no. 9, pp. 6448-6460, 2022
+
   \bibitem{paper:continuous_auth}
   Dahia, Gabriel, Leone Jesus, and Mauricio Pamplona Segundo
   \newblock Continuous authentication using biometrics: An advanced review
@@ -671,12 +686,6 @@ Thresholdを変化させていくと，図\ref{fig:threshold}より，エルラ�
   A. Rahman, V. M. Lubecke, O. Boric–Lubecke, J. H. Prins and T. Sakamoto
   \newblock Doppler Radar Techniques for Accurate Respiration Characterization and Subject Identification
   \newblock {\it IEEE Journal on Emerging and Selected Topics in Circuits and Systems}, vol. 8, no. 2, pp. 350-359, 2018
-
-
-  \bibitem{paper:unsupervised}
-  Y. Yang, X. Yang, T. Sakamoto, F. Fioranelli, B. Li and Y. Lang
-  \newblock Unsupervised Domain Adaptation for Disguised-Gait-Based Person Identification on Micro-Doppler Signatures
-  \newblock {\it IEEE Transactions on Circuits and Systems for Video Technology}, vol. 32, no. 9, pp. 6448-6460, 2022
 
   \bibitem{paper:human_track}
   Peijun Zhao, Chris Xiaoxuan Lu, Jianan Wang, Changhao Chen, Wei Wang, Niki Trigoni, Andrew Markham
@@ -740,6 +749,16 @@ Nguyen Dinh Chinh, Luu Manh Ha, Guanghao Sun, Le Quoc Anh, Pham Viet Huong, Tran
 C. Haritha, M. Ganesan and E. P. Sumesh
 \newblock A survey on modern trends in ECG noise removal techniques
 \newblock {\it 2016 International Conference on Circuit, Power and Computing Technologies (ICCPCT)}, pp. 1-7, 2016 
+
+\bibitem{paper:daubechies1}
+Y. I. Jang, J. Y. Sim, J.-R. Yang, and N. K. Kwon
+\newblock The Optimal Selection of Mother Wavelet Function and Decomposition Level for Denoising of DCG Signal
+\newblock {\it Sensors}, Vol. 21, No. 5, p. 1851, 2021
+
+\bibitem{paper:daubechies2}
+P. B. Patil and M. S. Chavan
+\newblock A wavelet based method for denoising of biomedical signal
+\newblock {\it International Conference on Pattern Recognition, Informatics and Medical Engineering (PRIME-2012)}, pp. 278-283, 2012
 
 \bibitem{paper:InceptionTime}
   Hassan Ismail Fawaz, Benjamin Lucas, Germain Forestier, Chalotte Pelletier, Daniel F. Schmidt, Jonathan Weber, Geoffrey I. Webb, Lhassane Idoumaghar, Pierre-Alain Muller, Francois Petitjean

@@ -1,0 +1,20 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces 被験者に対しドップラーレーダで照射した様子}}{5}{}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces 提案法のアルゴリズム}}{17}{}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces ノイズの少ない心拍信号データセットから取得した胸壁変位波形の例}}{18}{}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces ウェーブレット再構成適用前と適用後の1秒間の波形の比較}}{19}{}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces ウェーブレット再構成適用前と適用後の900秒間の波形の比較}}{19}{}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces InceptionTimeの構造概要}}{21}{}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces 6ポートCWレーダで心拍信号を計測する様子\cite {paper:30-dataset}}}{25}{}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces 30人の被験者の分類，ノイズの少ないデータセットでクローズセット環境の場合}}{26}{}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces 30人の被験者の分類，ノイズの少ないデータセットでオープンセット環境の場合. 既知の人物は15名，未知の人物は15名，しきい値0.7}}{27}{}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces 12人の被験者の分類，ノイズの多いデータセットでクローズセット環境の場合}}{31}{}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces 12人の被験者の分類，ノイズの多いデータセットでオープンセット環境の場合. 既知の人物は6名，未知の人物は6名，しきい値0.7}}{32}{}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Opennessによる精度の変化}}{35}{}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Thresholdによる精度の変化}}{36}{}%
+\addvspace {10\p@ }
