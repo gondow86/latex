@@ -1,0 +1,19 @@
+\documentclass[dvipdfmx]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{mathtools}
+\usepackage{here}
+
+\begin{document}
+\title{卒業研究レポート}
+\author{権藤陸}
+\maketitle
+\subsection*{卒論題目}
+心拍信号を用いた深層学習による人物識別
+\subsection*{概要}
+ドップラーレーダを人間に対し使用すると，送信波と受信波の周波数の変化から，心臓の動きによる胸壁の変位を知ることができる．
+本研究は，ドップラーレーダで得た心拍の情報が含まれた波形データを深層学習モデルの入力とし，人物識別を行う．
+本分野の課題は，訓練段階で学習させていない人物をテストに加えた，オープンセット環境下において，被験者の心拍信号からモデルが自動的に抽出した特徴量が十分に分離されないことに起因する，精度の劣化である．
+そこで本研究では，オープンセット環境下に注目し，分類精度の改善が期待される新たなモデルの構造や損失関数を提案し，1次元CNN(Convolutional Neural Network)を用いたベースラインのさらなる改善を目指す．
+
+\end{document}

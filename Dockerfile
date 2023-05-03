@@ -2,7 +2,7 @@ FROM paperist/texlive-ja:latest
 
 RUN apt-get update \
   && apt-get install -y \
-    libfontconfig1 \
+  libfontconfig1 \
   && rm -rf /var/lib/apt/lists/*
 
 RUN tlmgr update --self
@@ -20,3 +20,5 @@ RUN tlmgr install algorithms
 RUN tlmgr install algorithmicx
 RUN tlmgr install enumitem
 RUN tlmgr install natbib
+# RUN tlmgr install newenum
+RUN tlmgr install layouts

@@ -1,0 +1,57 @@
+\documentclass[dvipdfmx]{article}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{mathtools}
+\usepackage{here}
+\begin{document}
+\title{Weekly Report}
+\author{Riku Gondow}
+\maketitle
+\section{Progress}
+\begin{itemize}
+    \item Apply wavelet reconstruction after applying EMD 
+    \item Check accuracy with different IMFs to be selected in noisy dataset under close-set condition
+\end{itemize}
+\section{Results}
+
+\begin{table}[H]
+    \caption{Accuracy when using EMD + Wavelet reconstruction}
+    \centering
+    \begin{tabular}{c|c}
+    \hline
+    IMF4, 5, 6 & 32.48\% \\
+    IMF5, 6 & 34.26\% \\
+    IMF6 & 34.31\% \\
+    \hline
+    \end{tabular}
+\end{table}
+
+The accuracy improves by 2.7 ~ 2.8\% when not using IMF4. I think this is because IMF4 contains more high-frequency components and noise than the heart rate signal compared to IMF5 and 6.
+
+\begin{table}[H]
+    \caption{Comparison of EMD vs EMD + Wavelet}
+    \centering
+    \begin{tabular}{c|c}
+    \hline
+    Only EMD & 29.83\% \\
+    EMD + Wavelet rec & 32.48\% \\
+    \hline
+    \end{tabular}
+\end{table}
+
+
+Since the accuracy when only BPF is applied is 47.27\%, it is possible that EMD has a bad influence. 
+
+Also, compared to the case where only EMD is applied, the wavelet transform increases the accuracy by 2.6\%, suggesting that the wavelet transform may contribute to the improvement of accuracy to some extent.
+
+\section{Next Plan}
+\begin{itemize}
+    \item Try Another preprocessing method
+    \begin{itemize}
+        \item BPF + Wavelet reconstruction
+        \item Using I/Q data and applying ellipse fitting (now just using I data)
+        \item Adding threshold processing to wavelet coefficients
+        \item Changing the decomposition level of wavelet transform (It affects the rate of denoising.)
+    \end{itemize}
+\end{itemize}
+\end{document}
